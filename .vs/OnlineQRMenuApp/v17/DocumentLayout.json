@@ -1,0 +1,438 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\models\\customizationgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\models\\customizationgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\products\\pricing.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\products\\pricing.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\users\\adminlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\users\\adminlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\users\\coffeeshoplogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\users\\coffeeshoplogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\users\\coffeeshopregister.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\users\\coffeeshopregister.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\wwwroot\\css\\log-reg.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\wwwroot\\css\\log-reg.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\models\\loyaltyprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\models\\loyaltyprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\models\\onlinecoffeemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\models\\onlinecoffeemanagementcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|c:\\users\\raiku\\source\\repos\\onlineqrmenuapp\\onlineqrmenuapp\\migrations\\20240805114401_initial-db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8A78029E-91D1-46A4-9FF6-22C25B0ADE23}|OnlineQRMenuApp\\OnlineQRMenuApp.csproj|solutionrelative:onlineqrmenuapp\\migrations\\20240805114401_initial-db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CustomizationGroup.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\CustomizationGroup.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Models\\CustomizationGroup.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\CustomizationGroup.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Models\\CustomizationGroup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T12:05:54.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "log-reg.css",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\css\\log-reg.css",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\wwwroot\\css\\log-reg.css",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\css\\log-reg.css",
+              "RelativeToolTip": "OnlineQRMenuApp\\wwwroot\\css\\log-reg.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-07T08:09:52.262Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Pricing.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Products\\Pricing.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Products\\Pricing.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Products\\Pricing.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Products\\Pricing.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T05:59:20.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CoffeeShopLogin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\CoffeeShopLogin.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Users\\CoffeeShopLogin.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\CoffeeShopLogin.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Users\\CoffeeShopLogin.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T08:05:41.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CoffeeShopRegister.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\CoffeeShopRegister.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Users\\CoffeeShopRegister.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\CoffeeShopRegister.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Users\\CoffeeShopRegister.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T08:06:51.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAFsAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-05T11:44:56.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Products\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Products\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAB/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-05T12:26:28.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminLogin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\AdminLogin.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Users\\AdminLogin.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\AdminLogin.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Users\\AdminLogin.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T08:03:34.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAADMAAAAAAAAAAAAkwEUAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-05T12:17:05.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\Index.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Users\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\Index.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Users\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T08:11:23.155Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\Edit.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Users\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Users\\Edit.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Users\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T08:14:26.717Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T07:51:20.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Program.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Program.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Program.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T12:28:58.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T12:23:04.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T14:06:56.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "OnlineQRMenuApp\\wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-08-05T13:21:44.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T05:43:50.895Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-07T05:53:36.321Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "OnlineQRMenuApp\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-06T09:43:10.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "OnlineQRMenuApp\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-08-05T13:21:46.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "LoyaltyProgram.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\LoyaltyProgram.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Models\\LoyaltyProgram.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\LoyaltyProgram.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Models\\LoyaltyProgram.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T11:44:51.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20240805114401_initial-db.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Migrations\\20240805114401_initial-db.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Migrations\\20240805114401_initial-db.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Migrations\\20240805114401_initial-db.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Migrations\\20240805114401_initial-db.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T11:44:01.412Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MenuItem.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\MenuItem.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Models\\MenuItem.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\MenuItem.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Models\\MenuItem.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABkAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T11:40:43.226Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "OnlineCoffeeManagementContext.cs",
+              "DocumentMoniker": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\OnlineCoffeeManagementContext.cs",
+              "RelativeDocumentMoniker": "OnlineQRMenuApp\\Models\\OnlineCoffeeManagementContext.cs",
+              "ToolTip": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\Models\\OnlineCoffeeManagementContext.cs",
+              "RelativeToolTip": "OnlineQRMenuApp\\Models\\OnlineCoffeeManagementContext.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAQwCEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T11:40:34.8Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

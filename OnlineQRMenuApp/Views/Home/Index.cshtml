@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Trang Chủ";
+}
+
+<style>
+    .hero-section {
+        position: relative;
+        background-image: url('/images/background.jpeg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+        text-align: center;
+    }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+    .hero-section h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+    }
+</style>
+
+<div class="hero-section px-5">
+    <h1 class="text-4xl font-bold mb-4">Chào Mừng Đến Với Online QR Menu</h1>
+    <p class="text-lg mb-6">Chúng tôi cung cấp một giải pháp toàn diện cho quán cà phê của bạn, biến mọi thứ trở nên chuyên nghiệp hơn và tiết kiệm chi phí so với quy trình truyền thống.</p>
+</div>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/quick-service.jpg" alt="Dịch Vụ Nhanh Chóng" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h2 class="text-2xl font-semibold mb-2">Dịch Vụ Nhanh Chóng</h2>
+            <p class="text-gray-600">Đặt cà phê và các đồ uống khác chỉ bằng cách quét mã QR, không cần xếp hàng hay chờ đợi.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/custom-orders.jpg" alt="Tùy Chỉnh Đơn Hàng" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h2 class="text-2xl font-semibold mb-2">Tùy Chỉnh Đơn Hàng</h2>
+            <p class="text-gray-600">Tùy chỉnh đơn hàng theo sở thích của bạn và lưu các đơn hàng yêu thích để đặt lại nhanh chóng.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/secure-payment.jpg" alt="Thanh Toán An Toàn" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h2 class="text-2xl font-semibold mb-2">Thanh Toán An Toàn</h2>
+            <p class="text-gray-600">Hỗ trợ nhiều phương thức thanh toán an toàn, bao gồm ví điện tử và thẻ tín dụng.</p>
+        </div>
+    </div>
+
+    <h2 class="text-3xl font-bold mb-6">Tính Năng Nổi Bật</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/qr-code-menu.jpg" alt="QR Code Menu" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">QR Code Menu</h3>
+            <p class="text-gray-600">Cung cấp giải pháp tạo menu QR code cho cửa hàng của bạn. Khách hàng chỉ cần quét mã QR để truy cập menu và đặt hàng nhanh chóng.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/app-interface.jpg" alt="Giao diện thân thiện" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">Giao diện thân thiện</h3>
+            <p class="text-gray-600">Giúp khách hàng của bạn dễ dàng chọn và đặt món với giao diện trực quan và thân thiện ngay cả khi dùng lần đầu chỉ với vài cú chạm.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/custom-orders.jpg" alt="Tùy Chỉnh Đơn Hàng" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">Tùy Chỉnh Đơn Hàng</h3>
+            <p class="text-gray-600">Cho phép khách hàng tùy chỉnh đơn hàng theo ý thích và lưu lại các đơn hàng yêu thích để dễ dàng đặt lại trong tương lai.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/order-management.jpg" alt="Quản Lý Đơn Hàng" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">Quản Lý Đơn Hàng</h3>
+            <p class="text-gray-600">Hệ thống quản lý đơn hàng tự động giúp bạn theo dõi và xử lý đơn hàng hiệu quả. Theo dõi doanh số, quản lý kho hàng, và tối ưu hóa quy trình làm việc với các công cụ phân tích chi tiết</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/secure-payment.jpg" alt="Thanh Toán Trực Tuyến" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">Thanh Toán Trực Tuyến</h3>
+            <p class="text-gray-600">Tích hợp các phương thức thanh toán trực tuyến an toàn và tiện lợi, bao gồm ví điện tử và thẻ tín dụng, cho khách hàng của bạn.</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <img src="~/images/loyalty-program.jpg" alt="Chương Trình Khách Hàng Thân Thiết" class="w-full h-32 object-cover rounded-t-lg mb-4">
+            <h3 class="text-2xl font-semibold mb-2">Chương Trình Khách Hàng Thân Thiết</h3>
+            <p class="text-gray-600">Tích hợp các chương trình khách hàng thân thiết giúp tăng cường lòng trung thành và khuyến khích khách hàng quay lại với các ưu đãi đặc biệt.</p>
+        </div>
+    </div>
+</div>
