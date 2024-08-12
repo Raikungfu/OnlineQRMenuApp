@@ -55,6 +55,9 @@ namespace OnlineQRMenuApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CoffeeShopAdminId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CoverImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -111,16 +114,13 @@ namespace OnlineQRMenuApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Website")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CoffeeShopId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CoffeeShopAdminId");
 
                     b.ToTable("CoffeeShops");
                 });
@@ -148,7 +148,7 @@ namespace OnlineQRMenuApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CoffeeShopCustomer");
+                    b.ToTable("CoffeeShopCustomers");
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.CustomizationGroup", b =>
@@ -443,9 +443,13 @@ namespace OnlineQRMenuApp.Migrations
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.CoffeeShop", b =>
                 {
-                    b.HasOne("OnlineQRMenuApp.Models.User", null)
+                    b.HasOne("OnlineQRMenuApp.Models.User", "CoffeeShopAdmin")
                         .WithMany("ManagedCoffeeShops")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("CoffeeShopAdminId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CoffeeShopAdmin");
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.CoffeeShopCustomer", b =>

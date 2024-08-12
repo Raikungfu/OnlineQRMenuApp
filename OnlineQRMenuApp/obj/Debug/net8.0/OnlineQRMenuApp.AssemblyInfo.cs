@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineQRMenuApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06d072551e77b46868d2d943605aeeeca9f9578e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2971e7569cab3ede09fdd430777514c9f2102be1")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineQRMenuApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineQRMenuApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

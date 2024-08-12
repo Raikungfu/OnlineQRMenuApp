@@ -42,6 +42,9 @@ namespace OnlineQRMenuApp.Models
 
         public string OpeningHours { get; set; } = "08:00 AM - 10:00 PM";
 
+        [Required]
+        public int UserId { get; set; }
+
         public virtual ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();

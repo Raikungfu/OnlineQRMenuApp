@@ -16,7 +16,7 @@ namespace OnlineQRMenuApp.Models
 
         public virtual ICollection<LoyaltyProgram> LoyaltyPrograms { get; set; } = new List<LoyaltyProgram>();
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-        public virtual ICollection<CoffeeShop> ManagedCoffeeShops { get; set; } = new List<CoffeeShop>(); // For admins
-        public virtual ICollection<CoffeeShopCustomer> CoffeeShopCustomers { get; set; } = new List<CoffeeShopCustomer>(); // For customers
+        public virtual ICollection<CoffeeShop> ManagedCoffeeShops { get; set; } = new List<CoffeeShop>();
+        public virtual ICollection<CoffeeShopCustomer> CoffeeShopCustomers { get; set; } = new List<CoffeeShopCustomer>();
     }
 }

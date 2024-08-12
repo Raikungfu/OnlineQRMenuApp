@@ -21,6 +21,7 @@ namespace OnlineQRMenuApp.Models
         public DbSet<OrderItemCustomization> OrderItemCustomizations { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<CoffeeShopCustomer> CoffeeShopCustomers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
