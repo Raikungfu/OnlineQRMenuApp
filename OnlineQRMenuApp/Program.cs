@@ -14,6 +14,11 @@ builder.Services.AddDbContext<OnlineCoffeeManagementContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 
 
 builder.Services.AddSignalR();
@@ -43,3 +48,5 @@ app.MapHub<AppHub<string>>("/AppHub/string");
 app.MapHub<AppHub<Notification>>("/AppHub/noti");
 
 app.Run();
+
+

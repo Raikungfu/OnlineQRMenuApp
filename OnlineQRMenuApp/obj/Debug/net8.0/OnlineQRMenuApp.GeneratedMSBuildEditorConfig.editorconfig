@@ -17,211 +17,211 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OnlineQRMenuApp
 build_property.RootNamespace = OnlineQRMenuApp
-build_property.ProjectDir = C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\
+build_property.ProjectDir = C:\Users\acer\Documents\1Proj\SMenu\SMenu_FE\FU QR\OnlineQRMenuApp\OnlineQRMenuApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp
+build_property.MSBuildProjectDirectory = C:\Users\acer\Documents\1Proj\SMenu\SMenu_FE\FU QR\OnlineQRMenuApp\OnlineQRMenuApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcEN1c3RvbWVyc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcEN1c3RvbWVyc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcEN1c3RvbWVyc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcEN1c3RvbWVyc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShopCustomers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcEN1c3RvbWVyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/CoffeeShops/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29mZmVlU2hvcHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Dashboard.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Privacy.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudUl0ZW1zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudUl0ZW1zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudUl0ZW1zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudUl0ZW1zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/MenuItems/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVudUl0ZW1zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Notifications/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm90aWZpY2F0aW9uc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Orders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Products/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Products/Pricing.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Products/Pricing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcUHJpY2luZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/Error.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_Nav.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_Nav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXYuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/AdminLogin.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/AdminLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQWRtaW5Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/CoffeeShopLogin.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/CoffeeShopLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ29mZmVlU2hvcExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/CoffeeShopRegister.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/CoffeeShopRegister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ29mZmVlU2hvcFJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Create.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Delete.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Details.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Edit.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Index.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/_ViewImports.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/_ViewStart.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Raiku/source/repos/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_Layout.cshtml]
+[C:/Users/acer/Documents/1Proj/SMenu/SMenu_FE/FU QR/OnlineQRMenuApp/OnlineQRMenuApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dwcadbudvn
