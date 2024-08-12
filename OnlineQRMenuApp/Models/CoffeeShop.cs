@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineQRMenuApp.Models
 {
@@ -44,5 +45,8 @@ namespace OnlineQRMenuApp.Models
         public virtual ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+        public virtual ICollection<CoffeeShopCustomer> CoffeeShopCustomers { get; set; } = new List<CoffeeShopCustomer>();
+
     }
 }
