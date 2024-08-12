@@ -53,7 +53,7 @@ namespace OnlineQRMenuApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CoffeeShopId,Name,Location,QRCode,PrimaryColor,SecondaryColor,Description,Slogan,Avatar,CoverImage,Hotline,Email,Website,Facebook,Instagram,Twitter,OpeningHours")] CoffeeShop coffeeShop)
+        public async Task<IActionResult> Create([Bind("CoffeeShopId,Name,Location,QRCode,PrimaryColor,SecondaryColor,Description,Slogan,Avatar,CoverImage,Hotline,Email,Website,Facebook,Instagram,Twitter,OpeningHours,UserId")] CoffeeShop coffeeShop)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace OnlineQRMenuApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CoffeeShopId,Name,Location,QRCode,PrimaryColor,SecondaryColor,Description,Slogan,Avatar,CoverImage,Hotline,Email,Website,Facebook,Instagram,Twitter,OpeningHours")] CoffeeShop coffeeShop)
+        public async Task<IActionResult> Edit(int id, [Bind("CoffeeShopId,Name,Location,QRCode,PrimaryColor,SecondaryColor,Description,Slogan,Avatar,CoverImage,Hotline,Email,Website,Facebook,Instagram,Twitter,OpeningHours,UserId")] CoffeeShop coffeeShop)
         {
             if (id != coffeeShop.CoffeeShopId)
             {

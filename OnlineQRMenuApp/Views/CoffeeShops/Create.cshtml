@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Nav.cshtml";
 }
 
 <h1>Create</h1>
@@ -92,6 +91,10 @@
                 <label asp-for="OpeningHours" class="control-label"></label>
                 <input asp-for="OpeningHours" class="form-control" />
                 <span asp-validation-for="OpeningHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
