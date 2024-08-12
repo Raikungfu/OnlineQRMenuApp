@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace OnlineQRMenuApp.Models
 {
@@ -25,14 +26,22 @@ namespace OnlineQRMenuApp.Models
 
         [Required]
         public int CoffeeShopId { get; set; }
+
+        [JsonIgnore]
         [ForeignKey("CoffeeShopId")]
         public virtual CoffeeShop CoffeeShop { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
+
+        [JsonIgnore]
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<CustomizationGroup> CustomizationGroups { get; set; } = new List<CustomizationGroup>();
+
+        [JsonIgnore]
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
