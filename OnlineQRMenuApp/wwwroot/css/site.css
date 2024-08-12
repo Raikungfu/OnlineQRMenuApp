@@ -16,3 +16,75 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+.main-content.expanded {
+    margin-right: 200px;
+    transition: margin-right 0.3s;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+    transform: translateX(100%);
+    z-index: 1000;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.sidebar.show {
+    transform: translateX(0);
+}
+
+.toggle-menu {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    position: absolute;
+    top: 20%;
+    right: 3%;
+    z-index: 2;
+    transition: background-color 0.3s;
+}
+
+.toggle-menu:hover {
+    background-color: #0056b3;
+}

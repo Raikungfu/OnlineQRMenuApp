@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets\\images\\secure-payment.jpg"
     },
     {
+      "Id": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\js\\Dashboard.js",
+      "PackagePath": "staticwebassets\\js\\Dashboard.js"
+    },
+    {
+      "Id": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\js\\SignalR.js",
+      "PackagePath": "staticwebassets\\js\\SignalR.js"
+    },
+    {
       "Id": "C:\\Users\\Raiku\\source\\repos\\OnlineQRMenuApp\\OnlineQRMenuApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

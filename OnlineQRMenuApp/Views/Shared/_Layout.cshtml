@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/OnlineQRMenuApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-...your-key..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        .fixed-nav {
+        .main-fixed-nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -17,29 +18,34 @@
             z-index: 1000;
         }
 
+        .main-nav-menu.expanded {
+            margin-right: 200px;
+            transition: margin-right 0.3s;
+        }
+
         body {
             padding-top: 4rem;
         }
 
-        .navbar-link {
+        .main-navbar-link {
             color: #d1d5db;
             text-decoration: none;
             padding: 0.5rem 1rem;
         }
 
-            .navbar-link:hover {
+            .main-navbar-link:hover {
                 color: #ffffff;
                 background-color: #4b5563;
                 border-radius: 0.25rem;
             }
 
-        .navbar-logo {
+        .main-navbar-logo {
             height: 40px;
             width: auto;
             margin-right: 0.5rem;
         }
 
-        .navbar-title {
+        .main-navbar-title {
             font-size: 1.5rem;
             font-weight: bold;
             color: #ffffff;
@@ -49,11 +55,11 @@
 </head>
 <body>
     <header>
-        <nav class="bg-gray-800 p-4 fixed-nav">
+        <nav class="bg-gray-800 p-4 main-fixed-nav">
             <div class="container mx-auto flex items-center justify-between">
                 <div class="flex items-center text-white font-bold">
-                    <img src="~/images/logo.jpeg" alt="Logo" class="navbar-logo" />
-                    <a href="/" class="navbar-title">Online QR Menu</a>
+                    <img src="~/images/logo.jpeg" alt="Logo" class="main-navbar-logo" />
+                    <a href="/" class="main-navbar-title">Online QR Menu</a>
                 </div>
                 <div class="block lg:hidden">
                     <button id="nav-toggle" class="text-white focus:outline-none">
@@ -62,12 +68,15 @@
                         </svg>
                     </button>
                 </div>
-                <div id="nav-menu" class="hidden lg:flex lg:items-center lg:space-x-4">
-                    <a href="/" class="navbar-link">Home</a>
-                    <a href="/Products/Index" class="navbar-link">Giới Thiệu Sản Phẩm</a>
-                    <a href="/Products/Pricing" class="navbar-link">Các Gói Cước</a>
-                    <a href="/Admin/Login" class="navbar-link">Admin Login</a>
-                    <a href="/Coffee-Shop/Login" class="navbar-link">Coffee Shop Login</a>
+                <div id="main-nav-menu" class="lg:flex lg:items-center lg:space-x-4 main-nav-menu">
+                    <a href="/" class="main-navbar-link">Home</a>
+                    <a href="/Products/Index" class="main-navbar-link">Giới Thiệu Sản Phẩm</a>
+                    <a href="/Products/Pricing" class="main-navbar-link">Các Gói Cước</a>
+                    <a href="/Admin/Login" class="main-navbar-link">Admin Login</a>
+                    <a href="/Coffee-Shop/Login" class="main-navbar-link">Coffee Shop Login</a>
+                    <button id="toggle-menu-open" class="toggle-menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
             </div>
             <div id="mobile-nav" class="hidden lg:hidden fixed inset-0 bg-gray-800 bg-opacity-75 z-50">
@@ -79,16 +88,21 @@
                     </button>
                 </div>
                 <div class="flex flex-col items-center">
-                    <a href="/" class="navbar-link py-2">Home</a>
-                    <a href="/Products/Index" class="navbar-link py-2">Giới Thiệu Sản Phẩm</a>
-                    <a href="/Products/Pricing" class="navbar-link py-2">Các Gói Cước</a>
-                    <a href="/Admin/Login" class="navbar-link py-2">Admin Login</a>
-                    <a href="/Coffee-Shop/Login" class="navbar-link py-2">Coffee Shop Login</a>
+                    <a href="/" class="main-navbar-link py-2">Home</a>
+                    <a href="/Products/Index" class="main-navbar-link py-2">Giới Thiệu Sản Phẩm</a>
+                    <a href="/Products/Pricing" class="main-navbar-link py-2">Các Gói Cước</a>
+                    <a href="/Admin/Login" class="main-navbar-link py-2">Admin Login</a>
+                    <a href="/Coffee-Shop/Login" class="main-navbar-link py-2">Coffee Shop Login</a>
                 </div>
             </div>
         </nav>
     </header>
-    @RenderBody()
+    <div class="topbar">
+        @Html.Partial("_Nav")
+    </div>
+    <div class="main-content">
+        @RenderBody()
+    </div>
     <footer class="bg-gray-800 p-4 mt-8 text-white text-center">
         &copy; FPT Combined Innovators Group - EXE101 - Summer 2024
     </footer>
@@ -102,5 +116,7 @@
             document.getElementById('mobile-nav').classList.add('hidden');
         });
     </script>
+    <script src="~/js/SignalR.js"></script>
+    <script src="~/js/Dashboard.js"></script>
 </body>
 </html>

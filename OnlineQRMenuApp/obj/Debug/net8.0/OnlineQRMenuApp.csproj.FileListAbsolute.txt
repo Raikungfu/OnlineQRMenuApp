@@ -250,3 +250,4 @@ C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\bin\Debug\net8.0\run
 C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\Users\Raiku\source\repos\OnlineQRMenuApp\OnlineQRMenuApp\obj\Debug\net8.0\OnlineQRMenuApp.sourcelink.json

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using OnlineQRMenuApp.Models;
+using OnlineQRMenuApp.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddDbContext<OnlineCoffeeManagementContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -33,5 +38,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<AppHub<string>>("/AppHub/string");
+app.MapHub<AppHub<Notification>>("/AppHub/noti");
 
 app.Run();
