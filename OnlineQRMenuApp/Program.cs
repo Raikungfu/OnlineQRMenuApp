@@ -21,22 +21,22 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
     });
 
-
-builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-        policy.AllowAnyOrigin()   // Cho phép tất cả các tên miền
-              .AllowAnyMethod()   // Cho phép tất cả các phương thức HTTP (GET, POST, v.v.)
-              .AllowAnyHeader();  // Cho phép tất cả các header
+        policy.WithOrigins("http://localhost:5173", "https://qrmenu-x5sm.onrender.com", "https://myqrapppos0817.z23.web.core.windows.net")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+            .SetIsOriginAllowed(_ => true)
+              .AllowCredentials();
     });
 });
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-// Sử dụng CORS
-app.UseCors("AllowAll");
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthorization();
 
@@ -61,8 +61,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapHub<AppHub<string>>("/AppHub/string");
+app.MapHub<AppHub<string>>("/AppHub");
 app.MapHub<AppHub<Notification>>("/AppHub/noti");
-app.MapHub<AppHub<OrderProcessDto>>("/AppHub/order-push");
+app.MapHub<AppHub<OrderProcessDto>>("/AppHub/order");
 
 app.Run();

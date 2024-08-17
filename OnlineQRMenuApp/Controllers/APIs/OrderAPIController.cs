@@ -9,6 +9,12 @@ using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
 namespace OnlineQRMenuApp.Controllers.APIs
 {
+    public class OrderRequest
+    {
+        public List<OrderDto> items { get; set; }
+        public string paymentMethod { get; set; }
+    }
+
     [Route("api/order")]
     [ApiController]
     public class OrdersController : ControllerBase
@@ -16,9 +22,10 @@ namespace OnlineQRMenuApp.Controllers.APIs
         private readonly OnlineCoffeeManagementContext _context;
         private readonly IHubContext<AppHub<OrderProcessDto>> _hubContext;
 
-        public OrdersController(OnlineCoffeeManagementContext context)
+        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // GET: api/Orders
@@ -47,13 +54,8 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
 
         [HttpPost]
-        public async Task<ActionResult<OrderDto>> PostOrder(List<OrderDto> items)
+        public async Task<IActionResult> PostOrder(OrderRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             Order order = new Order
             {
                 OrderDate = DateTime.Now,
@@ -63,7 +65,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            foreach (OrderDto item in items)
+            foreach (OrderDto item in request.items)
             {
                 OrderItem orderItem = new OrderItem
                 {
@@ -75,13 +77,12 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 await _context.SaveChangesAsync();
             }
 
-            await _hubContext.Clients.All.SendAsync("ReceiveOrderStatus", new OrderProcessDto
+            _hubContext.Clients.All.SendAsync("ReceiveOrderStatus", new OrderProcessDto
             {
                 OrderId = order.OrderId,
                 status = "pending"
             });
-
-            return Ok(order);
+            return NoContent();
         }
 
 

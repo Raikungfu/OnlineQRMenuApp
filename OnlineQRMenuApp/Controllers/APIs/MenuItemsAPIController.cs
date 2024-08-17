@@ -26,21 +26,21 @@ namespace OnlineQRMenuApp.Controllers.APIs
         }
 
         // GET: api/MenuItems/5
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
-        //{
-        //    var menuItem = await _context.MenuItems
-        //        .Include(m => m.Category)
-        //        .Include(m => m.CoffeeShop)
-        //        .FirstOrDefaultAsync(m => m.MenuItemId == id);
+        [HttpGet("item/{id}")]
+        public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
+        {
+            var menuItem = await _context.MenuItems
+                .Include(m => m.Category)
+                .Include(m => m.CoffeeShop)
+                .FirstOrDefaultAsync(m => m.MenuItemId == id);
 
-        //    if (menuItem == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (menuItem == null)
+            {
+                return NotFound();
+            }
 
-        //    return menuItem;
-        //}
+            return menuItem;
+        }
 
         [HttpGet("{Id}")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu(int Id)
