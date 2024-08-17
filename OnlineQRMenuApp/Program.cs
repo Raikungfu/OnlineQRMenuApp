@@ -63,8 +63,6 @@ app.MapControllerRoute(
 
 app.MapHub<AppHub<string>>("/AppHub/string");
 app.MapHub<AppHub<Notification>>("/AppHub/noti");
-app.MapHub<AppHub<OrderProcessDto>("/AppHub/order-status");
+app.MapHub<AppHub<OrderProcessDto>>("/AppHub/order-push");
 
 app.Run();
-
-

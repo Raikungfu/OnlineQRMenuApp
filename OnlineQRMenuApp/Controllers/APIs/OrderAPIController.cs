@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using OnlineQRMenuApp.Dto;
+using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
 namespace OnlineQRMenuApp.Controllers.APIs
 {
@@ -12,6 +14,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
     public class OrdersController : ControllerBase
     {
         private readonly OnlineCoffeeManagementContext _context;
+        private readonly IHubContext<AppHub<OrderProcessDto>> _hubContext;
 
         public OrdersController(OnlineCoffeeManagementContext context)
         {
@@ -44,8 +47,13 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
 
         [HttpPost]
-        public async Task<ActionResult<OrderDto>> PostOrder(OrderDto incommingOrder)
+        public async Task<ActionResult<OrderDto>> PostOrder(List<OrderDto> items)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Order order = new Order
             {
                 OrderDate = DateTime.Now,
@@ -53,21 +61,29 @@ namespace OnlineQRMenuApp.Controllers.APIs
             };
 
             _context.Orders.Add(order);
-            await _context.SaveChangesAsync(); ;
+            await _context.SaveChangesAsync();
 
-            OrderItem orderItem = new OrderItem
+            foreach (OrderDto item in items)
+            {
+                OrderItem orderItem = new OrderItem
+                {
+                    OrderId = order.OrderId,
+                    MenuItemId = item.ProductId
+                };
+
+                _context.OrderItems.Add(orderItem);
+                await _context.SaveChangesAsync();
+            }
+
+            await _hubContext.Clients.All.SendAsync("ReceiveOrderStatus", new OrderProcessDto
             {
                 OrderId = order.OrderId,
-                MenuItemId = incommingOrder.ProductId
-            };
-
-            _context.OrderItems.Add(orderItem);
-            await _context.SaveChangesAsync(); ;
-
-            // Thêm logic real time ở đây
+                status = "pending"
+            });
 
             return Ok(order);
         }
+
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]
