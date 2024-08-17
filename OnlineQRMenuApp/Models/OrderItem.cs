@@ -12,6 +12,9 @@ namespace OnlineQRMenuApp.Models
         [Required]
         public int MenuItemId { get; set; }
 
+        public string Size { get; set; }
+        public string Options { get; set; }
+
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
         [ForeignKey("MenuItemId")]

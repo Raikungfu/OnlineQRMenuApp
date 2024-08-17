@@ -16,9 +16,10 @@ namespace OnlineQRMenuApp.Controllers.APIs
         private readonly OnlineCoffeeManagementContext _context;
         private readonly IHubContext<AppHub<OrderProcessDto>> _hubContext;
 
-        public OrdersController(OnlineCoffeeManagementContext context)
+        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // GET: api/Orders
@@ -27,6 +28,49 @@ namespace OnlineQRMenuApp.Controllers.APIs
         {
             return await _context.Orders.Include(o => o.CoffeeShop).Include(o => o.User).ToListAsync();
         }
+
+        // GET: api/order/getorders
+        [HttpGet("getorders")]
+        public async Task<ActionResult<OrdersFetch>> GetOrdersByCustomRoute()
+        {
+            var ordersFetch = new OrdersFetch
+            {
+                Items = new List<OrderFetchItems>()
+            };
+
+            var orders = await _context.Orders.ToListAsync();
+
+            foreach (var order in orders)
+            {
+                var orderItems = await _context.OrderItems
+                    .Where(oI => oI.OrderId == order.OrderId)
+                    .ToListAsync();
+
+                foreach (var orderItem in orderItems)
+                {
+                    var product = await _context.MenuItems
+                        .Where(mi => mi.MenuItemId == orderItem.MenuItemId)
+                        .FirstOrDefaultAsync();
+
+                    if (product != null)
+                    {
+                        var orderFetchItem = new OrderFetchItems
+                        {
+                            ProductId = product.MenuItemId,
+                            ProductName = product.Name,
+                            Price = product.Price,
+                            Option = orderItem.Options,
+                            Size = orderItem.Size
+                        };
+
+                        ordersFetch.Items.Add(orderFetchItem);
+                    }
+                }
+            }
+
+            return Ok(ordersFetch);
+        }
+
 
         // GET: api/Orders/5
         [HttpGet("{id}")]
@@ -47,7 +91,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
 
         [HttpPost]
-        public async Task<ActionResult<OrderDto>> PostOrder(List<OrderDto> items)
+        public async Task<ActionResult<OrderDto>> PostOrder(OrderRequestDto request)
         {
             if (!ModelState.IsValid)
             {
@@ -56,19 +100,23 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
             Order order = new Order
             {
+                CoffeeShopId = 1,
                 OrderDate = DateTime.Now,
                 Status = "Confirm",
+                UserId = 1
             };
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            foreach (OrderDto item in items)
+            foreach (OrderDto item in request.Items)
             {
                 OrderItem orderItem = new OrderItem
                 {
                     OrderId = order.OrderId,
-                    MenuItemId = item.ProductId
+                    MenuItemId = item.ProductId,
+                    Options = item.Option,
+                    Size = item.Size,
                 };
 
                 _context.OrderItems.Add(orderItem);
@@ -83,7 +131,6 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
             return Ok(order);
         }
-
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]
