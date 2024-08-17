@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineQRMenuApp.Controllers.APIs
 {
-    [Route("api/[controller]")]
+    [Route("api/menu")]
     [ApiController]
     public class MenuItemsApiController : ControllerBase
     {
@@ -26,21 +26,39 @@ namespace OnlineQRMenuApp.Controllers.APIs
         }
 
         // GET: api/MenuItems/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
+        //{
+        //    var menuItem = await _context.MenuItems
+        //        .Include(m => m.Category)
+        //        .Include(m => m.CoffeeShop)
+        //        .FirstOrDefaultAsync(m => m.MenuItemId == id);
+
+        //    if (menuItem == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return menuItem;
+        //}
+
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu(int Id)
         {
-            var menuItem = await _context.MenuItems
+            var menuItems = await _context.MenuItems
                 .Include(m => m.Category)
                 .Include(m => m.CoffeeShop)
-                .FirstOrDefaultAsync(m => m.MenuItemId == id);
+                .Where(m => m.CoffeeShopId == Id)
+                .ToListAsync();
 
-            if (menuItem == null)
+            if (menuItems == null || !menuItems.Any())
             {
                 return NotFound();
             }
 
-            return menuItem;
+            return menuItems;
         }
+
 
         // POST: api/MenuItems
         [HttpPost]
