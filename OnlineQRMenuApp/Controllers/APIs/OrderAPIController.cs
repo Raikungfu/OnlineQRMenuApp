@@ -31,21 +31,30 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
         // GET: api/order/getorders
         [HttpGet("getorders")]
-        public async Task<ActionResult<OrdersFetch>> GetOrdersByCustomRoute()
+        public async Task<ActionResult<List<OrdersFetch>>> GetOrdersByCustomRoute()
         {
-            var ordersFetch = new OrdersFetch
-            {
-                Items = new List<OrderFetchItems>()
-            };
+            List<OrdersFetch> ListOrder = new List<OrdersFetch>();
 
+            
             var orders = await _context.Orders.ToListAsync();
 
+
+            //số oder
             foreach (var order in orders)
             {
+                OrdersFetch ordersFetch = new OrdersFetch
+                {
+                    Items = new List<OrderFetchItems>(),
+                    Status = order.Status,
+                    OrderId = order.OrderId,
+                };
+
+
                 var orderItems = await _context.OrderItems
                     .Where(oI => oI.OrderId == order.OrderId)
                     .ToListAsync();
 
+                // số item trong 1 oder 
                 foreach (var orderItem in orderItems)
                 {
                     var product = await _context.MenuItems
@@ -66,9 +75,10 @@ namespace OnlineQRMenuApp.Controllers.APIs
                         ordersFetch.Items.Add(orderFetchItem);
                     }
                 }
+                ListOrder.Add(ordersFetch);
             }
 
-            return Ok(ordersFetch);
+            return Ok(ListOrder);
         }
 
 
