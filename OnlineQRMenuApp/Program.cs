@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Hubs;
+using OnlineQRMenuApp.Dto;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +23,24 @@ builder.Services.AddControllers()
 
 
 builder.Services.AddSignalR();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()   // Cho phép tất cả các tên miền
+              .AllowAnyMethod()   // Cho phép tất cả các phương thức HTTP (GET, POST, v.v.)
+              .AllowAnyHeader();  // Cho phép tất cả các header
+    });
+});
 
 var app = builder.Build();
+
+// Sử dụng CORS
+app.UseCors("AllowAll");
+
+app.UseAuthorization();
+
+app.MapControllers();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -46,7 +63,6 @@ app.MapControllerRoute(
 
 app.MapHub<AppHub<string>>("/AppHub/string");
 app.MapHub<AppHub<Notification>>("/AppHub/noti");
+app.MapHub<AppHub<OrderProcessDto>>("/AppHub/order-push");
 
 app.Run();
-
-

@@ -38,6 +38,8 @@ namespace OnlineQRMenuApp.Models
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
+        public string Options { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<CustomizationGroup> CustomizationGroups { get; set; } = new List<CustomizationGroup>();
 
