@@ -1,1 +1,45 @@
 .vs/
+OnlineQRMenuApp/bin/
+OnlineQRMenuApp/obj/
+OnlineQRMenuApp/*.user
+OnlineQRMenuApp/*.suo
+OnlineQRMenuApp/*.ncb
+OnlineQRMenuApp/*.sdf
+OnlineQRMenuApp/*.vssscc
+OnlineQRMenuApp/.vscode/
+OnlineQRMenuApp/*.csproj.user
+OnlineQRMenuApp/*.csproj.suo
+OnlineQRMenuApp/*.csproj.*
+OnlineQRMenuApp/*.sln.docstates
+OnlineQRMenuApp/*.dbmdl
+OnlineQRMenuApp/*.bak
+OnlineQRMenuApp/*.log
+OnlineQRMenuApp/*.tmp
+OnlineQRMenuApp/*.swp
+
+# Bỏ qua các tệp nhị phân của dự án và build trong thư mục OnlineQRMenuApp
+OnlineQRMenuApp/*.dll
+OnlineQRMenuApp/*.exe
+OnlineQRMenuApp/*.pdb
+OnlineQRMenuApp/*.cache
+OnlineQRMenuApp/*.aspnetcompiler
+OnlineQRMenuApp/*.jfm
+OnlineQRMenuApp/*.js
+OnlineQRMenuApp/*.css
+OnlineQRMenuApp/*.map
+
+# Bỏ qua các tệp của ASP.NET trong thư mục OnlineQRMenuApp
+OnlineQRMenuApp/project.lock.json
+OnlineQRMenuApp/project.fragment.lock.json
+OnlineQRMenuApp/artifacts/
+
+# Bỏ qua các tệp của Visual Studio Code trong thư mục OnlineQRMenuApp
+OnlineQRMenuApp/.vscode/
+
+# Bỏ qua các thư mục và tệp hệ thống
+*.DS_Store
+*.desktop
+*.directory
+Thumbs.db
+ehthumbs.db
+Desktop.ini
