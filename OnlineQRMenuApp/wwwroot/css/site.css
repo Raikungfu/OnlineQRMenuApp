@@ -88,3 +88,23 @@ html {
 .toggle-menu:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 1024px) {
+    .main-nav-menu {
+        display: none;
+    }
+
+    .main-mobile-nav {
+        display: block;
+    }
+}
+
+@media (min-width: 1025px) {
+    .main-nav-menu {
+        display: flex;
+    }
+
+    .main-mobile-nav {
+        display: none;
+    }
+}
