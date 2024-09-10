@@ -18,11 +18,9 @@ namespace OnlineQRMenuApp.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<MenuItemCustomization> MenuItemCustomizations { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<OrderItemCustomization> OrderItemCustomizations { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<CoffeeShopCustomer> CoffeeShopCustomers { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -39,24 +37,18 @@ namespace OnlineQRMenuApp.Models
                 .HasForeignKey(oi => oi.MenuItemId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<OrderItemCustomization>()
-                .HasOne(oic => oic.OrderItem)
-                .WithMany(oi => oi.Customizations)
-                .HasForeignKey(oic => oic.OrderItemId)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<CoffeeShopCustomer>()
+                .HasOne(csc => csc.CoffeeShop)
+                .WithMany(cs => cs.CoffeeShopCustomers)
+                .HasForeignKey(csc => csc.CoffeeShopId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<OrderItemCustomization>()
-                .HasOne(oic => oic.MenuItemCustomization)
-                .WithMany()
-                .HasForeignKey(oic => oic.MenuItemCustomizationId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<MenuItem>()
-                .HasOne(mi => mi.CoffeeShop)
-                .WithMany(cs => cs.MenuItems)
-                .HasForeignKey(mi => mi.CoffeeShopId)
-                .OnDelete(DeleteBehavior.Cascade);
-
+            modelBuilder.Entity<CoffeeShopCustomer>()
+                .HasOne(csc => csc.User)
+                .WithMany(u => u.CoffeeShopCustomers)
+                .HasForeignKey(csc => csc.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            
             modelBuilder.Entity<MenuItem>()
                 .HasOne(mi => mi.Category)
                 .WithMany(c => c.MenuItems)
@@ -73,7 +65,7 @@ namespace OnlineQRMenuApp.Models
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.CoffeeShop)
@@ -81,5 +73,6 @@ namespace OnlineQRMenuApp.Models
                 .HasForeignKey(o => o.CoffeeShopId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

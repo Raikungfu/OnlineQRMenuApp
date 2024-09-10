@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlineQRMenuApp.Migrations
 {
     /// <inheritdoc />
-    public partial class initialdb : Migration
+    public partial class DBInitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,39 +18,12 @@ namespace OnlineQRMenuApp.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CoffeeShops",
-                columns: table => new
-                {
-                    CoffeeShopId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QRCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PrimaryColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondaryColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Slogan = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoverImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Hotline = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Facebook = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Instagram = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Twitter = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OpeningHours = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CoffeeShops", x => x.CoffeeShopId);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,34 +44,36 @@ namespace OnlineQRMenuApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItems",
+                name: "CoffeeShops",
                 columns: table => new
                 {
-                    MenuItemId = table.Column<int>(type: "int", nullable: false)
+                    CoffeeShopId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PrimaryColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SecondaryColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoffeeShopId = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    Slogan = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CoverImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hotline = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Facebook = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Instagram = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Twitter = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OpeningHours = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MenuItems", x => x.MenuItemId);
+                    table.PrimaryKey("PK_CoffeeShops", x => x.CoffeeShopId);
                     table.ForeignKey(
-                        name: "FK_MenuItems_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MenuItems_CoffeeShops_CoffeeShopId",
-                        column: x => x.CoffeeShopId,
-                        principalTable: "CoffeeShops",
-                        principalColumn: "CoffeeShopId",
+                        name: "FK_CoffeeShops_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -146,15 +121,77 @@ namespace OnlineQRMenuApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CoffeeShopCustomers",
+                columns: table => new
+                {
+                    CoffeeShopCustomerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CoffeeShopId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    JoinedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CoffeeShopCustomers", x => x.CoffeeShopCustomerId);
+                    table.ForeignKey(
+                        name: "FK_CoffeeShopCustomers_CoffeeShops_CoffeeShopId",
+                        column: x => x.CoffeeShopId,
+                        principalTable: "CoffeeShops",
+                        principalColumn: "CoffeeShopId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CoffeeShopCustomers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MenuItems",
+                columns: table => new
+                {
+                    MenuItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Size = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CoffeeShopId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    Options = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuItems", x => x.MenuItemId);
+                    table.ForeignKey(
+                        name: "FK_MenuItems_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MenuItems_CoffeeShops_CoffeeShopId",
+                        column: x => x.CoffeeShopId,
+                        principalTable: "CoffeeShops",
+                        principalColumn: "CoffeeShopId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
                     CoffeeShopId = table.Column<int>(type: "int", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,7 +207,7 @@ namespace OnlineQRMenuApp.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -289,6 +326,21 @@ namespace OnlineQRMenuApp.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CoffeeShopCustomers_CoffeeShopId",
+                table: "CoffeeShopCustomers",
+                column: "CoffeeShopId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CoffeeShopCustomers_UserId",
+                table: "CoffeeShopCustomers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CoffeeShops_UserId",
+                table: "CoffeeShops",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CustomizationGroups_MenuItemId",
                 table: "CustomizationGroups",
                 column: "MenuItemId");
@@ -358,6 +410,9 @@ namespace OnlineQRMenuApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CoffeeShopCustomers");
+
+            migrationBuilder.DropTable(
                 name: "LoyaltyPrograms");
 
             migrationBuilder.DropTable(
@@ -385,13 +440,13 @@ namespace OnlineQRMenuApp.Migrations
                 name: "MenuItems");
 
             migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "CoffeeShops");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

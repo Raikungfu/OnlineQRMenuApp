@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Dto;
+using OnlineQRMenuApp.Models.ViewModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,12 @@ builder.Services.AddDbContext<OnlineCoffeeManagementContext>(option =>
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+        options.JsonSerializerOptions.IgnoreNullValues = true;
     });
+
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddCors(options =>
 {
@@ -32,6 +36,7 @@ builder.Services.AddCors(options =>
               .AllowCredentials();
     });
 });
+
 builder.Services.AddSignalR();
 
 var app = builder.Build();

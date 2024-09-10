@@ -12,8 +12,8 @@ using OnlineQRMenuApp.Models;
 namespace OnlineQRMenuApp.Migrations
 {
     [DbContext(typeof(OnlineCoffeeManagementContext))]
-    [Migration("20240812061802_add-coffeeshopcustomer")]
-    partial class addcoffeeshopcustomer
+    [Migration("20240910041227_DBInitial")]
+    partial class DBInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,10 @@ namespace OnlineQRMenuApp.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -98,10 +102,6 @@ namespace OnlineQRMenuApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QRCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SecondaryColor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,7 +114,7 @@ namespace OnlineQRMenuApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Website")
@@ -151,7 +151,7 @@ namespace OnlineQRMenuApp.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CoffeeShopCustomer");
+                    b.ToTable("CoffeeShopCustomers");
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.CustomizationGroup", b =>
@@ -223,6 +223,10 @@ namespace OnlineQRMenuApp.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Options")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -317,11 +321,18 @@ namespace OnlineQRMenuApp.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
@@ -448,7 +459,9 @@ namespace OnlineQRMenuApp.Migrations
                 {
                     b.HasOne("OnlineQRMenuApp.Models.User", null)
                         .WithMany("ManagedCoffeeShops")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.CoffeeShopCustomer", b =>
@@ -456,13 +469,13 @@ namespace OnlineQRMenuApp.Migrations
                     b.HasOne("OnlineQRMenuApp.Models.CoffeeShop", "CoffeeShop")
                         .WithMany("CoffeeShopCustomers")
                         .HasForeignKey("CoffeeShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("OnlineQRMenuApp.Models.User", "User")
                         .WithMany("CoffeeShopCustomers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("CoffeeShop");
@@ -540,8 +553,7 @@ namespace OnlineQRMenuApp.Migrations
                     b.HasOne("OnlineQRMenuApp.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("CoffeeShop");
 

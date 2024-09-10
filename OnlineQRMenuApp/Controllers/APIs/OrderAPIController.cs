@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineQRMenuApp.Dto;
 using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
@@ -11,6 +12,9 @@ namespace OnlineQRMenuApp.Controllers.APIs
 {
     public class OrderRequest
     {
+        public int? userId { get; set; }
+        public int coffeeShopId { get; set; }
+        public int tableId { get; set; }
         public List<OrderDto> items { get; set; }
         public string paymentMethod { get; set; }
     }
@@ -52,16 +56,21 @@ namespace OnlineQRMenuApp.Controllers.APIs
             return order;
         }
 
-
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrderRequest request)
         {
+            decimal totalPrice = request.items.Sum(x => x.Price * x.Quantity);
             Order order = new Order
             {
+                CoffeeShopId = request.coffeeShopId,
+                UserId = request.userId,
+                TableId = request.tableId,
+                TotalPrice = totalPrice,
                 OrderDate = DateTime.Now,
+                UpdateDate = DateTime.Now,
                 Status = "Confirm",
+                PaymentMethod = request.paymentMethod
             };
-
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
@@ -70,19 +79,34 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 OrderItem orderItem = new OrderItem
                 {
                     OrderId = order.OrderId,
-                    MenuItemId = item.ProductId
+                    MenuItemId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Note = item.Note,
+                    SizeOptions = item.SizeOptions
                 };
-
                 _context.OrderItems.Add(orderItem);
                 await _context.SaveChangesAsync();
             }
 
             _hubContext.Clients.All.SendAsync("ReceiveOrderStatus", new OrderProcessDto
             {
-                OrderId = order.OrderId,
-                status = "pending"
+                orderId = order.OrderId,
+                status = "Confirm",
+                updateDate = order.UpdateDate,
+                paymentMethod = order.PaymentMethod,
+                orderDate = order.OrderDate
             });
-            return NoContent();
+
+            var response = new
+            {
+                OrderId = order.OrderId,
+                Status = "Confirm",
+                UpdateDate = order.UpdateDate,
+                PaymentMethod = order.PaymentMethod,
+                OrderDate = order.OrderDate
+            };
+
+            return Ok(response);
         }
 
 

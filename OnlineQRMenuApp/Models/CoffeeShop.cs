@@ -14,8 +14,6 @@ namespace OnlineQRMenuApp.Models
 
         public string Location { get; set; } = string.Empty;
 
-        public string QRCode { get; set; } = string.Empty;
-
         public string PrimaryColor { get; set; } = "#000000";
 
         public string SecondaryColor { get; set; } = "#FFFFFF";

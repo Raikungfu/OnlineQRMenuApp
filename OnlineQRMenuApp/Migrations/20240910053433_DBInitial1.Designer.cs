@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineQRMenuApp.Models;
 
@@ -11,9 +12,11 @@ using OnlineQRMenuApp.Models;
 namespace OnlineQRMenuApp.Migrations
 {
     [DbContext(typeof(OnlineCoffeeManagementContext))]
-    partial class OnlineCoffeeManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20240910053433_DBInitial1")]
+    partial class DBInitial1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,8 +231,16 @@ namespace OnlineQRMenuApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Options")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -326,12 +337,6 @@ namespace OnlineQRMenuApp.Migrations
                     b.Property<int>("TableId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
@@ -355,19 +360,8 @@ namespace OnlineQRMenuApp.Migrations
                     b.Property<int>("MenuItemId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SizeOptions")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderItemId");
 
@@ -376,6 +370,29 @@ namespace OnlineQRMenuApp.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("OnlineQRMenuApp.Models.OrderItemCustomization", b =>
+                {
+                    b.Property<int>("OrderItemCustomizationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderItemCustomizationId"));
+
+                    b.Property<int>("MenuItemCustomizationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderItemId")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderItemCustomizationId");
+
+                    b.HasIndex("MenuItemCustomizationId");
+
+                    b.HasIndex("OrderItemId");
+
+                    b.ToTable("OrderItemCustomizations");
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.Payment", b =>
@@ -574,6 +591,25 @@ namespace OnlineQRMenuApp.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("OnlineQRMenuApp.Models.OrderItemCustomization", b =>
+                {
+                    b.HasOne("OnlineQRMenuApp.Models.MenuItemCustomization", "MenuItemCustomization")
+                        .WithMany()
+                        .HasForeignKey("MenuItemCustomizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineQRMenuApp.Models.OrderItem", "OrderItem")
+                        .WithMany("Customizations")
+                        .HasForeignKey("OrderItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuItemCustomization");
+
+                    b.Navigation("OrderItem");
+                });
+
             modelBuilder.Entity("OnlineQRMenuApp.Models.Payment", b =>
                 {
                     b.HasOne("OnlineQRMenuApp.Models.Order", "Order")
@@ -614,6 +650,11 @@ namespace OnlineQRMenuApp.Migrations
             modelBuilder.Entity("OnlineQRMenuApp.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("OnlineQRMenuApp.Models.OrderItem", b =>
+                {
+                    b.Navigation("Customizations");
                 });
 
             modelBuilder.Entity("OnlineQRMenuApp.Models.User", b =>

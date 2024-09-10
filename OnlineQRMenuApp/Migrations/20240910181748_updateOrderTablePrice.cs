@@ -5,30 +5,25 @@
 namespace OnlineQRMenuApp.Migrations
 {
     /// <inheritdoc />
-    public partial class updateDB1 : Migration
+    public partial class updateOrderTablePrice : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
-            migrationBuilder.AddColumn<string>(
-                name: "Image",
-                table: "Categories",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<decimal>(
+                name: "TotalPrice",
+                table: "Orders",
+                type: "decimal(18,2)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0m);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_CoffeeShops_Users_UserId",
-                table: "CoffeeShops");
-
             migrationBuilder.DropColumn(
-                name: "Image",
-                table: "Categories");
+                name: "TotalPrice",
+                table: "Orders");
         }
     }
 }

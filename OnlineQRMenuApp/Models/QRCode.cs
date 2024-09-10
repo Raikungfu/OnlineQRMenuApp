@@ -3,21 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineQRMenuApp.Models
 {
-    public class CoffeeShopCustomer
+    public class QRCode
     {
         [Key]
-        public int CoffeeShopCustomerId { get; set; }
+        public int QRCodeId { get; set; }
+
+        public string Link { get; set; } = string.Empty;
+
+        public int tableId { get; set; }
 
         [Required]
         public int CoffeeShopId { get; set; }
         [ForeignKey("CoffeeShopId")]
         public virtual CoffeeShop CoffeeShop { get; set; }
-
-        [Required]
-        public int UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-
-        public DateTime JoinedDate { get; set; }
     }
 }

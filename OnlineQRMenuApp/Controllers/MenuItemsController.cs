@@ -21,7 +21,7 @@ namespace OnlineQRMenuApp.Controllers
         // GET: MenuItems
         public async Task<IActionResult> Index()
         {
-            var onlineCoffeeManagementContext = _context.MenuItems.Include(m => m.Category).Include(m => m.CoffeeShop);
+            var onlineCoffeeManagementContext = _context.MenuItems.Include(m => m.Category);
             return View(await onlineCoffeeManagementContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace OnlineQRMenuApp.Controllers
 
             var menuItem = await _context.MenuItems
                 .Include(m => m.Category)
-                .Include(m => m.CoffeeShop)
                 .FirstOrDefaultAsync(m => m.MenuItemId == id);
             if (menuItem == null)
             {
@@ -67,7 +66,7 @@ namespace OnlineQRMenuApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", menuItem.CategoryId);
-            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.CoffeeShopId);
+            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.Category.CoffeeShopId);
             return View(menuItem);
         }
 
@@ -85,7 +84,7 @@ namespace OnlineQRMenuApp.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", menuItem.CategoryId);
-            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.CoffeeShopId);
+            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.Category.CoffeeShopId);
             return View(menuItem);
         }
 
@@ -122,7 +121,7 @@ namespace OnlineQRMenuApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", menuItem.CategoryId);
-            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.CoffeeShopId);
+            ViewData["CoffeeShopId"] = new SelectList(_context.CoffeeShops, "CoffeeShopId", "Name", menuItem.Category.CoffeeShopId);
             return View(menuItem);
         }
 
@@ -136,7 +135,7 @@ namespace OnlineQRMenuApp.Controllers
 
             var menuItem = await _context.MenuItems
                 .Include(m => m.Category)
-                .Include(m => m.CoffeeShop)
+                .Include(m => m.Category.CoffeeShop)
                 .FirstOrDefaultAsync(m => m.MenuItemId == id);
             if (menuItem == null)
             {

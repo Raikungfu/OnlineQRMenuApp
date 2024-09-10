@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineQRMenuApp.Models;
+using OnlineQRMenuApp.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,51 +14,63 @@ namespace OnlineQRMenuApp.Controllers.APIs
     public class MenuItemsApiController : ControllerBase
     {
         private readonly OnlineCoffeeManagementContext _context;
+        private readonly IMapper _mapper;
 
-        public MenuItemsApiController(OnlineCoffeeManagementContext context)
+        public MenuItemsApiController(OnlineCoffeeManagementContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/MenuItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItems()
         {
-            return await _context.MenuItems.Include(m => m.Category).Include(m => m.CoffeeShop).ToListAsync();
+            return await _context.MenuItems.Include(m => m.Category).ToListAsync();
         }
 
         // GET: api/MenuItems/5
         [HttpGet("item/{id}")]
-        public async Task<ActionResult<MenuItem>> GetMenuItem(int id)
+        public async Task<ActionResult<MenuItemsModel>> GetMenuItem(int id)
         {
             var menuItem = await _context.MenuItems
-                .Include(m => m.Category)
-                .Include(m => m.CoffeeShop)
+                .Include(m => m.CustomizationGroups).ThenInclude(mC => mC.Customizations)
                 .FirstOrDefaultAsync(m => m.MenuItemId == id);
 
             if (menuItem == null)
             {
                 return NotFound();
             }
+            var menuItemsModel = _mapper.Map<MenuItemsModel>(menuItem);
 
-            return menuItem;
+
+            return menuItemsModel;
         }
 
-        [HttpGet("{Id}")]
-        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu(int Id)
+
+
+        [HttpGet("product")]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu([FromQuery] int shopId, [FromQuery] int? categoryId)
         {
-            var menuItems = await _context.MenuItems
-                .Include(m => m.Category)
-                .Include(m => m.CoffeeShop)
-                .Where(m => m.CoffeeShopId == Id)
-                .ToListAsync();
+            var query = _context.Categories
+                .Include(c => c.MenuItems)
+                .Where(c => c.CoffeeShopId == shopId);
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                query = query.Where(c => c.CategoryId == categoryId);
+            }
+
+            var categories = await query.ToListAsync();
+
+            var menuItems = categories.SelectMany(c => c.MenuItems).ToList();
 
             if (menuItems == null || !menuItems.Any())
             {
                 return NotFound();
             }
 
-            return menuItems;
+            return Ok(menuItems);
         }
 
 
