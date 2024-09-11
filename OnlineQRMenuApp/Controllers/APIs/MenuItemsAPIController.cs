@@ -30,12 +30,12 @@ namespace OnlineQRMenuApp.Controllers.APIs
         }
 
         // GET: api/MenuItems/5
-        [HttpGet("item/{id}")]
-        public async Task<ActionResult<MenuItemsModel>> GetMenuItem(int id)
+        [HttpGet("item")]
+        public async Task<ActionResult<MenuItemsModel>> GetMenuItem([FromQuery] int shopId, [FromQuery] int productId)
         {
-            var menuItem = await _context.MenuItems
+            var menuItem = await _context.MenuItems.Where(m => m.Category.CoffeeShopId == shopId)
                 .Include(m => m.CustomizationGroups).ThenInclude(mC => mC.Customizations)
-                .FirstOrDefaultAsync(m => m.MenuItemId == id);
+                .FirstOrDefaultAsync(m => m.MenuItemId == productId);
 
             if (menuItem == null)
             {
