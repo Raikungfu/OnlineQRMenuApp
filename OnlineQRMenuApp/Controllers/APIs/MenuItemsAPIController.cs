@@ -47,8 +47,6 @@ namespace OnlineQRMenuApp.Controllers.APIs
             return menuItemsModel;
         }
 
-
-
         [HttpGet("product")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu([FromQuery] int shopId, [FromQuery] int? categoryId)
         {
@@ -72,7 +70,33 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
             return Ok(menuItems);
         }
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuSearch([FromQuery] int shopId, [FromQuery] string? searchQuery, [FromQuery] int? categoryId)
+        {
+            var normalizedSearchQuery = string.IsNullOrWhiteSpace(searchQuery) ? string.Empty : searchQuery.Trim().ToLower();
 
+            var query = _context.MenuItems
+                .Where(mi => mi.Category.CoffeeShopId == shopId);
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                query = query.Where(mi => mi.CategoryId == categoryId);
+            }
+
+            if (!string.IsNullOrEmpty(normalizedSearchQuery))
+            {
+                query = query.Where(mi => mi.Name.ToLower().Contains(normalizedSearchQuery));
+            }
+
+            var menuItems = await query.ToListAsync();
+
+            if (menuItems == null || !menuItems.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(menuItems);
+        }
 
         // POST: api/MenuItems
         [HttpPost]
