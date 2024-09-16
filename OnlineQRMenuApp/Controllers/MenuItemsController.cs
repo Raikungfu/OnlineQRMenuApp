@@ -9,11 +9,11 @@ using OnlineQRMenuApp.Models;
 
 namespace OnlineQRMenuApp.Controllers
 {
-    public class MenuItemsController : Controller
+    public class MenuItemsController : BaseController
     {
         private readonly OnlineCoffeeManagementContext _context;
 
-        public MenuItemsController(OnlineCoffeeManagementContext context)
+        public MenuItemsController(IWebHostEnvironment env, IConfiguration configuration, OnlineCoffeeManagementContext context) : base(env, configuration)
         {
             _context = context;
         }

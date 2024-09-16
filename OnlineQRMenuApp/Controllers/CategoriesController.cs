@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,11 @@ using OnlineQRMenuApp.Models;
 
 namespace OnlineQRMenuApp.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private readonly OnlineCoffeeManagementContext _context;
 
-        public CategoriesController(OnlineCoffeeManagementContext context)
+        public CategoriesController(IWebHostEnvironment env, IConfiguration configuration, OnlineCoffeeManagementContext context) : base(env, configuration)
         {
             _context = context;
         }

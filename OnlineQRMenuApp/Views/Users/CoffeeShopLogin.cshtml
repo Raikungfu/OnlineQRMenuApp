@@ -6,21 +6,21 @@
     <link rel="stylesheet" href="~/css/log-reg.css" asp-append-version="true" />
 </head>
 
-
 <div class="flex items-center justify-center h-screen bg-gray-100">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center">Coffee Shop Login</h2>
-        <form>
+
+        <form method="post">
             <div class="mb-4">
-                <label class="block text-gray-700 mb-2" for="username">Username</label>
-                <input class="w-full p-2 border rounded" type="text" id="username" placeholder="Enter your username">
+                <label class="block text-gray-700 mb-2" for="Email">Username</label>
+                <input class="w-full p-2 border rounded" type="text" id="Email" name="Email" placeholder="Enter your username" required>
             </div>
             <div class="mb-6">
-                <label class="block text-gray-700 mb-2" for="password">Password</label>
-                <input class="w-full p-2 border rounded" type="password" id="password" placeholder="Enter your password">
+                <label class="block text-gray-700 mb-2" for="Password">Password</label>
+                <input class="w-full p-2 border rounded" type="password" id="Password" name="Password" placeholder="Enter your password" required>
             </div>
             <div class="flex items-center justify-between">
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="button">
+                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">
                     Login
                 </button>
             </div>

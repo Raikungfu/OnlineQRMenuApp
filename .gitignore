@@ -16,6 +16,7 @@ OnlineQRMenuApp/*.bak
 OnlineQRMenuApp/*.log
 OnlineQRMenuApp/*.tmp
 OnlineQRMenuApp/*.swp
+OnlineQRMenuApp/*.json
 
 # Bỏ qua các tệp nhị phân của dự án và build trong thư mục OnlineQRMenuApp
 OnlineQRMenuApp/*.dll

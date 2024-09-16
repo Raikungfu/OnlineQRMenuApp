@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OnlineQRMenuApp.Dto;
 using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
+using OnlineQRMenuApp.Models.ViewModel;
 namespace OnlineQRMenuApp.Controllers.APIs
 {
     public class OrderRequest
@@ -17,6 +19,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
         public int tableId { get; set; }
         public List<OrderDto> items { get; set; }
         public string paymentMethod { get; set; }
+        public string? deviceId { get; set; }
     }
 
     [Route("api/order")]
@@ -25,18 +28,20 @@ namespace OnlineQRMenuApp.Controllers.APIs
     {
         private readonly OnlineCoffeeManagementContext _context;
         private readonly IHubContext<AppHub<OrderProcessDto>> _hubContext;
+        private readonly AppHub<OrderProcessDto> _appHub;
 
-        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext)
+        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext, AppHub<OrderProcessDto> appHub)
         {
             _context = context;
             _hubContext = hubContext;
+            _appHub = appHub;
         }
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders([FromQuery] int shopId)
         {
-            return await _context.Orders.Include(o => o.CoffeeShop).Include(o => o.User).ToListAsync();
+            return await _context.Orders.Where(o => o.CoffeeShopId == shopId).Include(o => o.CoffeeShop).Include(o => o.User).ToListAsync();
         }
 
         // GET: api/Orders/5
@@ -56,6 +61,20 @@ namespace OnlineQRMenuApp.Controllers.APIs
             return order;
         }
 
+        [HttpGet("getOrderItems/{id}")]
+        public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems(int id)
+        {
+            var orderItems = await _context.OrderItems
+                .Where(m => m.OrderId == id).ToListAsync();
+
+            if (orderItems == null || !orderItems.Any())
+            {
+                return NotFound();
+            }
+
+            return orderItems;
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostOrder(OrderRequest request)
         {
@@ -68,8 +87,9 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 TotalPrice = totalPrice,
                 OrderDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
-                Status = "Confirm",
-                PaymentMethod = request.paymentMethod
+                Status = "Ordered",
+                PaymentMethod = request.paymentMethod,
+                DeviceId = request.deviceId
             };
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
@@ -88,10 +108,19 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 await _context.SaveChangesAsync();
             }
 
-            _hubContext.Clients.All.SendAsync("ReceiveOrderStatus", new OrderProcessDto
+            List<string> userConnectionString = _appHub.GetConnectionIdsByRoleAndDeviceId("customer", request.deviceId);
+            List<string> coffeeshopConnectionString = _appHub.GetConnectionIdsByRoleAndId("coffeeshop", request.coffeeShopId);
+
+
+            var allConnections = new List<string>();
+
+            allConnections.AddRange(userConnectionString);
+            allConnections.AddRange(coffeeshopConnectionString);
+
+            _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
             {
                 orderId = order.OrderId,
-                status = "Confirm",
+                status = "Ordered",
                 updateDate = order.UpdateDate,
                 paymentMethod = order.PaymentMethod,
                 orderDate = order.OrderDate
@@ -100,7 +129,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
             var response = new
             {
                 OrderId = order.OrderId,
-                Status = "Confirm",
+                Status = "Ordered",
                 UpdateDate = order.UpdateDate,
                 PaymentMethod = order.PaymentMethod,
                 OrderDate = order.OrderDate
@@ -109,6 +138,39 @@ namespace OnlineQRMenuApp.Controllers.APIs
             return Ok(response);
         }
 
+        [HttpPut("updateOrderStatus")]
+        public async Task<IActionResult> UpdateOrderStatus(OrderProcessDto orderProcessDto)
+        {
+            var order = await _context.Orders.FindAsync(orderProcessDto.orderId);
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            order.Status = orderProcessDto.status;
+            order.UpdateDate = DateTime.Now;
+            order.PaymentMethod = orderProcessDto.paymentMethod;
+            await _context.SaveChangesAsync();
+
+            List<string> userConnectionString = _appHub.GetConnectionIdsByRoleAndDeviceId("customer", order.DeviceId);
+            List<string> coffeeshopConnectionString = _appHub.GetConnectionIdsByRoleAndId("coffeeshop", order.CoffeeShopId);
+
+            var allConnections = new List<string>();
+
+            allConnections.AddRange(userConnectionString);
+            allConnections.AddRange(coffeeshopConnectionString);
+
+            _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
+            {
+                orderId = order.OrderId,
+                status = order.Status,
+                updateDate = order.UpdateDate,
+                paymentMethod = order.PaymentMethod,
+                orderDate = order.OrderDate
+            });
+
+            return NoContent();
+        }
 
         // PUT: api/Orders/5
         [HttpPut("{id}")]

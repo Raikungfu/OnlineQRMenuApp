@@ -1,14 +1,18 @@
+using AutoMapper.Execution;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnlineQRMenuApp.Models;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace OnlineQRMenuApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IWebHostEnvironment env, IConfiguration configuration, ILogger<HomeController> logger): base(env, configuration)
         {
             _logger = logger;
         }
@@ -34,5 +38,7 @@ namespace OnlineQRMenuApp.Controllers
         {
             return View();
         }
+
+
     }
 }

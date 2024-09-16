@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -72,8 +73,22 @@
                     <a href="/" class="main-navbar-link">Home</a>
                     <a href="/Products/Index" class="main-navbar-link">Giới Thiệu Sản Phẩm</a>
                     <a href="/Products/Pricing" class="main-navbar-link">Các Gói Cước</a>
-                    <a href="/Admin/Login" class="main-navbar-link">Admin Login</a>
-                    <a href="/Coffee-Shop/Login" class="main-navbar-link">Coffee Shop Login</a>
+                    @if (User.IsInRole("CoffeeShopManager"))
+                    {
+                        var frontendLink = ViewData["DashboardLink"] as string;
+                        <a href="@frontendLink" class="main-navbar-link">Dashboard</a>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/" class="main-navbar-link">Welcome, @User.FindFirst(ClaimTypes.Name).Value</a>
+                        <a class="main-navbar-link" asp-controller="Users" asp-action="Logout">Logout</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Login" class="main-navbar-link">Admin Login</a>
+                        <a href="/Coffee-Shop/Login" class="main-navbar-link">Coffee Shop Login</a>
+                    }
+
                     <button id="toggle-menu-open" class="toggle-menu">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -122,5 +137,6 @@
     </script>
     <script src="~/js/SignalR.js"></script>
     <script src="~/js/Dashboard.js"></script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>

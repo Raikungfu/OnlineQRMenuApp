@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function login(event, actionLink) {
+    event.preventDefault();
+    const formData = new URLSearchParams(new FormData(document.getElementById('loginForm'))).toString();
 
-// Write your JavaScript code.
+    fetch(actionLink, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
+    }).then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    }).then(data => {
+        const token = data.token;
+        if (token) {
+            localStorage.setItem('token', token);
+            window.location.href = '/';
+        }
+    }).catch(error => {
+        console.error('Error during login:', error);
+    });
+}

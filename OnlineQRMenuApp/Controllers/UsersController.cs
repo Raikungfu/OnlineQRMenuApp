@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using AutoMapper.Execution;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using OnlineQRMenuApp.Models;
+using OnlineQRMenuApp.Service;
 
 namespace OnlineQRMenuApp.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private readonly OnlineCoffeeManagementContext _context;
+        private readonly TokenService _tokenService;
 
-        public UsersController(OnlineCoffeeManagementContext context)
+        public UsersController(IWebHostEnvironment env, IConfiguration configuration, OnlineCoffeeManagementContext context, TokenService tokenService) : base(env, configuration)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         // GET: Users
@@ -41,6 +50,56 @@ namespace OnlineQRMenuApp.Controllers
         {
             return View();
         }
+
+        [HttpPost("Coffee-Shop/Login")]
+        public async Task<IActionResult> CoffeeShopLogin([Bind("Email,Password")] User m)
+        {
+            var member = await ValidateMemberAsync(m.Email, m.Password);
+            if (member == null)
+            {
+                ViewData["ErrorMessage"] = "ID/Password not correct!";
+                return View();
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, member.Email),
+                new Claim(ClaimTypes.NameIdentifier, member.UserId.ToString()),
+                new Claim(ClaimTypes.Role, member.UserType),
+            };
+
+            // var token = _tokenService.GenerateToken(member);
+            // Response.Headers.Add("Authorization", "Bearer " + token);
+
+            var claimsIdentity = new ClaimsIdentity(claims, "CoffeeShopSaintRai");
+
+            await HttpContext.SignInAsync("CoffeeShopSaintRai", new ClaimsPrincipal(claimsIdentity));
+            // return Json(new { token });
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync("CoffeeShopSaintRai");
+            return RedirectToAction("Index", "Home");
+        }
+
+        private async Task<User> ValidateMemberAsync(string email, string password)
+        {
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                return null;
+            }
+
+            var member = await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
+            if (member == null)
+            {
+                return null;
+            }
+
+            return member;
+        }
+
 
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)

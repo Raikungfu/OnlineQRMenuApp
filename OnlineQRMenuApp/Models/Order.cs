@@ -16,6 +16,7 @@ namespace OnlineQRMenuApp.Models
         public DateTime UpdateDate { get; set; }
         public string Status { get; set; }
         public string PaymentMethod { get; set; }
+        public string? DeviceId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }

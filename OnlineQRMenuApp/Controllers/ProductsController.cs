@@ -2,8 +2,13 @@
 
 namespace OnlineQRMenuApp.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
+
+        public ProductsController(IWebHostEnvironment env, IConfiguration configuration) : base(env, configuration)
+        {
+        }
+
         public IActionResult Index()
         {
             return View();

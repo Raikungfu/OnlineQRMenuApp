@@ -3,6 +3,12 @@ using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Dto;
 using OnlineQRMenuApp.Models.ViewModel;
+using OnlineQRMenuApp.Service;
+using System.Security.Claims;
+using System.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Cryptography;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,16 +17,59 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").GetChildren().FirstOrDefault(x => x.Key == builder.Environment.EnvironmentName)?.Value?.Split(',');
+
 builder.Services.AddDbContext<OnlineCoffeeManagementContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.PropertyNamingPolicy = null;
         options.JsonSerializerOptions.IgnoreNullValues = true;
     });
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddAuthentication("CoffeeShopSaintRai")
+    .AddCookie("CoffeeShopSaintRai", options =>
+    {
+        options.LoginPath = "/Members/Login";
+    })
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "CoffeeShopSaintRai",
+            ValidAudience = "CoffeeShopSaintRai",
+            IssuerSigningKey = new RsaSecurityKey(KeyHelper.GetPrivateKey())
+        };
+    });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireClaim(ClaimTypes.Role, "Admin"));
+    options.AddPolicy("CoffeeShopManagerPolicy", policy =>
+        policy.RequireClaim(ClaimTypes.Role, "CoffeeShopManager"));
+    options.AddPolicy("CoffeeShopCustomerPolicy", policy =>
+            policy.RequireClaim(ClaimTypes.Role, "CoffeeShopCustomer"));
+});
+
+
+builder.Services.AddScoped<TokenService>();
 
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -29,7 +78,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "https://qrmenu-x5sm.onrender.com", "https://myqrapppos0817.z23.web.core.windows.net")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyMethod()
               .AllowAnyHeader()
             .SetIsOriginAllowed(_ => true)
