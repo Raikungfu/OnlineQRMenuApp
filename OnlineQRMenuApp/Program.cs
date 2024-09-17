@@ -5,19 +5,20 @@ using OnlineQRMenuApp.Dto;
 using OnlineQRMenuApp.Models.ViewModel;
 using OnlineQRMenuApp.Service;
 using System.Security.Claims;
-using System.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Security.Cryptography;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
-var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").GetChildren().FirstOrDefault(x => x.Key == builder.Environment.EnvironmentName)?.Value?.Split(',');
+var environment = builder.Environment.EnvironmentName;
+
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").GetChildren().FirstOrDefault(x => x.Key == environment)?.Value?.Split(',');
 
 builder.Services.AddDbContext<OnlineCoffeeManagementContext>(option =>
 {
@@ -32,31 +33,65 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddScoped<TokenService>(); 
+builder.Services.AddSingleton<ConnectionMappingService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials()
+              .SetIsOriginAllowed(_ => true)
+              .WithExposedHeaders("Authorization");
+    });
+});
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = environment == "Production" ? CookieSecurePolicy.Always : CookieSecurePolicy.None;
+    options.Cookie.SameSite = environment == "Production" ? SameSiteMode.Strict : SameSiteMode.Lax;
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddAuthentication("CoffeeShopSaintRai")
-    .AddCookie("CoffeeShopSaintRai", options =>
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+{
+    /*
+    options.LoginPath = "/Users/Login";
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = environment == "Production" ? CookieSecurePolicy.Always : CookieSecurePolicy.None;
+    options.Cookie.SameSite = environment == "Production" ? SameSiteMode.Strict : SameSiteMode.Lax;
+    */
+    options.LoginPath = "/Users/Login";
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.None;
+})
+.AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.LoginPath = "/Members/Login";
-    })
-    .AddJwtBearer("Bearer", options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = "CoffeeShopSaintRai",
-            ValidAudience = "CoffeeShopSaintRai",
-            IssuerSigningKey = new RsaSecurityKey(KeyHelper.GetPrivateKey())
-        };
-    });
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = "RaiYugi",
+        ValidAudience = "Saint",
+        IssuerSigningKey = new RsaSecurityKey(KeyHelper.GetPrivateKey())
+    };
+});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -68,31 +103,11 @@ builder.Services.AddAuthorization(options =>
             policy.RequireClaim(ClaimTypes.Role, "CoffeeShopCustomer"));
 });
 
-
-builder.Services.AddScoped<TokenService>();
-
-
-builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin", policy =>
-    {
-        policy.WithOrigins(allowedOrigins)
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-            .SetIsOriginAllowed(_ => true)
-              .AllowCredentials();
-    });
-});
-
 builder.Services.AddSignalR();
 
 var app = builder.Build();
 
 app.UseCors("AllowSpecificOrigin");
-
-app.UseAuthorization();
 
 app.MapControllers();
 
@@ -109,6 +124,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

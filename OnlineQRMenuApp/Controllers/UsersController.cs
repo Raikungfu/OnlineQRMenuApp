@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.Execution;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,11 @@ using OnlineQRMenuApp.Service;
 
 namespace OnlineQRMenuApp.Controllers
 {
+    public class TokenRequest
+    {
+        public string Token { get; set; }
+    }
+
     public class UsersController : BaseController
     {
         private readonly OnlineCoffeeManagementContext _context;
@@ -62,25 +68,75 @@ namespace OnlineQRMenuApp.Controllers
             }
 
             var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, member.UserId.ToString()),
+        new Claim(ClaimTypes.NameIdentifier, member.Email),
+        new Claim(ClaimTypes.Role, member.UserType),
+    };
+            var users = await _context.Users.ToListAsync(); // Lấy tất cả người dùng
+
+            foreach (var user in users)
             {
-                new Claim(ClaimTypes.Name, member.Email),
-                new Claim(ClaimTypes.NameIdentifier, member.UserId.ToString()),
-                new Claim(ClaimTypes.Role, member.UserType),
-            };
+                user.UserType = "CoffeeShopManager"; // Cập nhật giá trị UserType
+            }
 
-            // var token = _tokenService.GenerateToken(member);
-            // Response.Headers.Add("Authorization", "Bearer " + token);
+            await _context.SaveChangesAsync();
+            var token = _tokenService.GenerateToken(member);
 
-            var claimsIdentity = new ClaimsIdentity(claims, "CoffeeShopSaintRai");
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            await HttpContext.SignInAsync("CoffeeShopSaintRai", new ClaimsPrincipal(claimsIdentity));
-            // return Json(new { token });
-            return RedirectToAction("Index", "Home");
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+            return Json(new { token });
+        }
+
+        [HttpPost("login-token")]
+        public async Task<IActionResult> LoginToken([FromBody] TokenRequest tokenRequest)
+        {
+            if (string.IsNullOrEmpty(tokenRequest?.Token))
+            {
+                return BadRequest(new { message = "Token không hợp lệ." });
+            }
+
+            var principal = _tokenService.ValidateToken(tokenRequest.Token);
+            if (principal == null)
+            {
+                return Unauthorized(new { message = "Token không hợp lệ hoặc đã hết hạn." });
+            }
+
+            var userEmail = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = principal.FindFirst(ClaimTypes.Name)?.Value;
+            var userRole = principal.FindFirst(ClaimTypes.Role)?.Value;
+
+            if (string.IsNullOrEmpty(userEmail) || string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userRole))
+            {
+                return Unauthorized(new { message = "Token không chứa thông tin người dùng." });
+            }
+
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, userId),
+        new Claim(ClaimTypes.NameIdentifier, userEmail),
+        new Claim(ClaimTypes.Role, userRole)
+    };
+
+            var newToken = _tokenService.GenerateToken(new User
+            {
+                Email = userEmail,
+                UserId = int.Parse(userId),
+                UserType = userRole
+            });
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+            return Ok(new { token = newToken });
         }
 
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync("CoffeeShopSaintRai");
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
 

@@ -76,11 +76,11 @@
                     @if (User.IsInRole("CoffeeShopManager"))
                     {
                         var frontendLink = ViewData["DashboardLink"] as string;
-                        <a href="@frontendLink" class="main-navbar-link">Dashboard</a>
+                        <a onclick="navDashboard('@frontendLink')" class="main-navbar-link">Dashboard</a>
                     }
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a href="/" class="main-navbar-link">Welcome, @User.FindFirst(ClaimTypes.Name).Value</a>
+                        <a href="/" class="main-navbar-link">Welcome, @User.FindFirst(ClaimTypes.NameIdentifier).Value</a>
                         <a class="main-navbar-link" asp-controller="Users" asp-action="Logout">Logout</a>
                     }
                     else
@@ -109,8 +109,21 @@
                     <a href="/" class="main-navbar-link py-2 text-white">Home</a>
                     <a href="/Products/Index" class="main-navbar-link py-2 text-white">Giới Thiệu Sản Phẩm</a>
                     <a href="/Products/Pricing" class="main-navbar-link py-2 text-white">Các Gói Cước</a>
-                    <a href="/Admin/Login" class="main-navbar-link py-2 text-white">Admin Login</a>
-                    <a href="/Coffee-Shop/Login" class="main-navbar-link py-2 text-white">Coffee Shop Login</a>
+                    @if (User.IsInRole("CoffeeShopManager"))
+                    {
+                        var frontendLink = ViewData["DashboardLink"] as string;
+                        <a onclick="navDashboard('@frontendLink')" class="main-navbar-link">Dashboard</a>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/" class="main-navbar-link">Welcome, @User.FindFirst(ClaimTypes.NameIdentifier).Value</a>
+                        <a class="main-navbar-link" asp-controller="Users" asp-action="Logout">Logout</a>
+                    }
+                    else
+                    {
+                        <a href="/Admin/Login" class="main-navbar-link">Admin Login</a>
+                        <a href="/Coffee-Shop/Login" class="main-navbar-link">Coffee Shop Login</a>
+                    }
                 </div>
             </div>
 

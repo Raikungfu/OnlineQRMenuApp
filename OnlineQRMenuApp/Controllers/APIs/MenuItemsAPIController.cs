@@ -43,7 +43,6 @@ namespace OnlineQRMenuApp.Controllers.APIs
             }
             var menuItemsModel = _mapper.Map<MenuItemsModel>(menuItem);
 
-
             return menuItemsModel;
         }
 

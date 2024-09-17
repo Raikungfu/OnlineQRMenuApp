@@ -24,3 +24,8 @@
         console.error('Error during login:', error);
     });
 }
+
+function navDashboard(link) {
+    var refreshToken = localStorage.getItem('token');
+    window.location.href = `${link}?token=${refreshToken}`;
+}

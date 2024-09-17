@@ -20,8 +20,8 @@ namespace OnlineQRMenuApp.Controllers
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             var frontendLink = _env.IsDevelopment()
-                ? _configuration["DashboardLink:Development"]
-                : _configuration["DashboardLink:Production"];
+                ? _configuration["DashboardLink:Development:CoffeeShop"]
+                : _configuration["DashboardLink:Production:CoffeeShop"];
 
             ViewData["DashboardLink"] = frontendLink;
 

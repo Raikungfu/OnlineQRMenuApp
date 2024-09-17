@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using OnlineQRMenuApp.Dto;
 using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Models.ViewModel;
+using OnlineQRMenuApp.Service;
 namespace OnlineQRMenuApp.Controllers.APIs
 {
     public class OrderRequest
@@ -28,51 +30,102 @@ namespace OnlineQRMenuApp.Controllers.APIs
     {
         private readonly OnlineCoffeeManagementContext _context;
         private readonly IHubContext<AppHub<OrderProcessDto>> _hubContext;
-        private readonly AppHub<OrderProcessDto> _appHub;
+        private readonly ConnectionMappingService _connectionService;
 
-        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext, AppHub<OrderProcessDto> appHub)
+        public OrdersController(OnlineCoffeeManagementContext context, IHubContext<AppHub<OrderProcessDto>> hubContext, ConnectionMappingService connectionService)
         {
             _context = context;
             _hubContext = hubContext;
-            _appHub = appHub;
+            _connectionService = connectionService;
         }
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders([FromQuery] int shopId)
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return await _context.Orders.Where(o => o.CoffeeShopId == shopId).Include(o => o.CoffeeShop).Include(o => o.User).ToListAsync();
-        }
-
-        // GET: api/Orders/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
-        {
-            var order = await _context.Orders
-                .Include(o => o.CoffeeShop)
-                .Include(o => o.User)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
-
-            if (order == null)
+            if (!User.Identity.IsAuthenticated)
             {
-                return NotFound();
+                return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
             }
 
-            return order;
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            if (userIdClaim == null || userTypeClaim == null)
+            {
+                return Unauthorized("Không thể xác định userId hoặc userType.");
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var userType = userTypeClaim.Value;
+
+            if (userType != "CoffeeShopManager" && userType != "Admin")
+            {
+                return Forbid("Bạn không có quyền truy cập danh sách đơn hàng.");
+            }
+
+            var coffeeShop = await _context.CoffeeShops.FirstOrDefaultAsync(c => c.UserId == userId);
+            if (coffeeShop == null)
+            {
+                return NotFound("Không tìm thấy thông tin cửa hàng liên kết với tài khoản này.");
+            }
+
+            var orders = await _context.Orders.Where(o => o.CoffeeShopId == coffeeShop.CoffeeShopId).Select(o => new
+            {
+                o.OrderId,
+                o.OrderDate,
+                o.TotalPrice,
+                o.Status,
+                o.PaymentMethod,
+                o.TableId,
+                ItemCount = _context.OrderItems.Count(oi => oi.OrderId == o.OrderId)
+            }).OrderByDescending(o => o.OrderDate).ToListAsync();
+
+            var groupedOrders = orders
+                .GroupBy(o => o.OrderDate.Date)
+                .Select(g => new OrderListViewModel
+                {
+                    Date = g.Key.ToString("yyyy-MM-dd"),
+                    Children = g.Select(o => new OrderViewModel
+                    {
+                        Code = o.OrderId.ToString(),
+                        Time = o.OrderDate,
+                        Status = o.Status,
+                        Price = o.TotalPrice.ToString("0.00"),
+                        Quantity = o.ItemCount.ToString(),
+                        Table = o.TableId.ToString(),
+                        PaymentStatus = "Paid",
+                        PaymentMethod = o.PaymentMethod
+                    }).ToList()
+                })
+                .ToList();
+
+            return Ok(groupedOrders);
         }
 
-        [HttpGet("getOrderItems/{id}")]
+        [HttpGet("getOrderItems")]
         public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems(int id)
         {
-            var orderItems = await _context.OrderItems
-                .Where(m => m.OrderId == id).ToListAsync();
+            var orderItems = await _context.OrderItems.Include(oT => oT.MenuItem).Where(m => m.OrderId == id).Select(ot => new
+            {
+                ot.OrderItemId,
+                ot.MenuItemId,
+                ot.Note,
+                ot.SizeOptions,
+                ot.Quantity,
+                Name = ot.MenuItem.Name,
+                Image = ot.MenuItem.Image,
+                Description = ot.MenuItem.Description,
+                ItemPrice = ot.MenuItem.Price,
+                Type = ot.MenuItem.Type
+            }).ToListAsync();
 
             if (orderItems == null || !orderItems.Any())
             {
                 return NotFound();
             }
 
-            return orderItems;
+            return Ok(orderItems);
         }
 
         [HttpPost]
@@ -108,23 +161,25 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 await _context.SaveChangesAsync();
             }
 
-            List<string> userConnectionString = _appHub.GetConnectionIdsByRoleAndDeviceId("customer", request.deviceId);
-            List<string> coffeeshopConnectionString = _appHub.GetConnectionIdsByRoleAndId("coffeeshop", request.coffeeShopId);
-
+            List<string> userConnectionIds = _connectionService.GetConnectionIdsByRoleAndDeviceId("customer", request.deviceId);
+            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("coffeeshop", request.coffeeShopId);
 
             var allConnections = new List<string>();
 
-            allConnections.AddRange(userConnectionString);
-            allConnections.AddRange(coffeeshopConnectionString);
+            allConnections.AddRange(userConnectionIds);
+            allConnections.AddRange(coffeeshopConnectionIds);
 
-            _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
+            if (allConnections.Any())
             {
-                orderId = order.OrderId,
-                status = "Ordered",
-                updateDate = order.UpdateDate,
-                paymentMethod = order.PaymentMethod,
-                orderDate = order.OrderDate
-            });
+                _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
+                {
+                    orderId = order.OrderId,
+                    status = order.Status,
+                    updateDate = order.UpdateDate,
+                    paymentMethod = order.PaymentMethod,
+                    orderDate = order.OrderDate
+                });
+            }
 
             var response = new
             {
@@ -152,22 +207,23 @@ namespace OnlineQRMenuApp.Controllers.APIs
             order.PaymentMethod = orderProcessDto.paymentMethod;
             await _context.SaveChangesAsync();
 
-            List<string> userConnectionString = _appHub.GetConnectionIdsByRoleAndDeviceId("customer", order.DeviceId);
-            List<string> coffeeshopConnectionString = _appHub.GetConnectionIdsByRoleAndId("coffeeshop", order.CoffeeShopId);
+            List<string> userConnectionIds = _connectionService.GetConnectionIdsByRoleAndDeviceId("customer", order.DeviceId);
+            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("coffeeshop", order.CoffeeShopId);
 
             var allConnections = new List<string>();
-
-            allConnections.AddRange(userConnectionString);
-            allConnections.AddRange(coffeeshopConnectionString);
-
-            _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
+            allConnections.AddRange(userConnectionIds);
+            allConnections.AddRange(coffeeshopConnectionIds);
+            if (allConnections.Any())
             {
-                orderId = order.OrderId,
-                status = order.Status,
-                updateDate = order.UpdateDate,
-                paymentMethod = order.PaymentMethod,
-                orderDate = order.OrderDate
-            });
+                _hubContext.Clients.Clients(allConnections).SendAsync("ReceiveOrderStatus", new OrderProcessDto
+                {
+                    orderId = order.OrderId,
+                    status = order.Status,
+                    updateDate = order.UpdateDate,
+                    paymentMethod = order.PaymentMethod,
+                    orderDate = order.OrderDate
+                });
+            }
 
             return NoContent();
         }

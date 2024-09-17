@@ -1,27 +1,34 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using AutoMapper.Execution;
+using Microsoft.IdentityModel.Tokens;
 using OnlineQRMenuApp.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace OnlineQRMenuApp.Service
 {
     public class TokenService
     {
         private readonly RSA _privateKey;
+        private readonly RSA _publicKey;
 
         public TokenService()
         {
             _privateKey = KeyHelper.GetPrivateKey();
+            _publicKey = KeyHelper.GetPublicKey();
         }
 
         public string GenerateToken(User user)
         {
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("Role", user.UserType)
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                new Claim(ClaimTypes.Role, user.UserType),
+                new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds().ToString())
             };
 
             var creds = new SigningCredentials(new RsaSecurityKey(_privateKey), SecurityAlgorithms.RsaSha256);
@@ -35,8 +42,37 @@ namespace OnlineQRMenuApp.Service
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public ClaimsPrincipal ValidateToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+
+            try
+            {
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = "RaiYugi",
+                    ValidAudience = "Saint",
+                    IssuerSigningKey = new RsaSecurityKey(_publicKey)
+                };
+
+                var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+
+                if (validatedToken is JwtSecurityToken jwtToken)
+                {
+                    return principal;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi xác thực token: {ex.Message}");
+            }
+
+            return null;
+        }
     }
-
 }
-
-
