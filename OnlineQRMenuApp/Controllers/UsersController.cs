@@ -73,11 +73,11 @@ namespace OnlineQRMenuApp.Controllers
         new Claim(ClaimTypes.NameIdentifier, member.Email),
         new Claim(ClaimTypes.Role, member.UserType),
     };
-            var users = await _context.Users.ToListAsync(); // Lấy tất cả người dùng
+            var users = await _context.Users.ToListAsync();
 
             foreach (var user in users)
             {
-                user.UserType = "CoffeeShopManager"; // Cập nhật giá trị UserType
+                user.UserType = "CoffeeShopManager";
             }
 
             await _context.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace OnlineQRMenuApp.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return Json(new { token });
+            return Json(new { token, success = true });
         }
 
         [HttpPost("login-token")]
@@ -131,7 +131,7 @@ namespace OnlineQRMenuApp.Controllers
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return Ok(new { token = newToken });
+            return Ok(new { token = newToken, success = true });
         }
 
         public async Task<IActionResult> Logout()
