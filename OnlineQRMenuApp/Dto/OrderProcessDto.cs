@@ -7,5 +7,6 @@
         public DateTime updateDate { get; set; }
         public DateTime orderDate { get; set; }
         public string paymentMethod { get; set; }
+        public string paymentStatus { get; set; }
     }
 }

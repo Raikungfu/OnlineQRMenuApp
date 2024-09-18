@@ -11,6 +11,7 @@
         public int CoffeeShopId { get; set; }
         public int CategoryId { get; set; }
         public int Quantity { get; set; }
+        public int Cost { get; set; }
         public string Note { get; set; }
         public List<CustomizationGroup> CustomizationGroups { get; set; }
     }
@@ -28,6 +29,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal AdditionalCost { get; set; }
+        public decimal Cost { get; set; }
         public bool IsSelected { get; set; }
     }
 

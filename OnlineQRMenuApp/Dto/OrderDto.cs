@@ -6,4 +6,5 @@
     public string SizeOptions { get; set; }
     public string Note { get; set; }
     public decimal Price { get; set; }
+    public decimal Cost { get; set; }
 }

@@ -18,4 +18,15 @@
         public List<OrderViewModel> Children { get; set; }
     }
 
+    public class OrderListDataViewModel
+    {
+        public int CountAll { get; set; }
+        public int CountPENDING { get; set; }
+        public int CountCONFIRMED { get; set; }
+        public int CountPROCESSING { get; set; }
+        public int CountPROCESSED { get; set; }
+        public int CountCOMPLETED { get; set; }
+        public int CountCANCELLED { get; set; }
+        public List<OrderListViewModel> OrderList { get; set; }
+    }
 }

@@ -12,8 +12,18 @@ using OnlineQRMenuApp.Hubs;
 using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Models.ViewModel;
 using OnlineQRMenuApp.Service;
+using static NuGet.Packaging.PackagingConstants;
 namespace OnlineQRMenuApp.Controllers.APIs
 {
+    enum OrderStatus {
+        PENDING,
+        CONFIRMED,
+        PROCESSING,
+        PROCESSED,
+        COMPLETED,
+        CANCELLED
+    }
+
     public class OrderRequest
     {
         public int? userId { get; set; }
@@ -40,9 +50,9 @@ namespace OnlineQRMenuApp.Controllers.APIs
             _connectionService = connectionService;
         }
 
-        // GET: api/Orders
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+
+        [HttpGet("count")]
+        public async Task<ActionResult> CountOrders()
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -71,17 +81,69 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 return NotFound("Không tìm thấy thông tin cửa hàng liên kết với tài khoản này.");
             }
 
-            var orders = await _context.Orders.Where(o => o.CoffeeShopId == coffeeShop.CoffeeShopId).Select(o => new
+            var counts = _context.Orders.Where(o => o.CoffeeShopId == coffeeShop.CoffeeShopId).GroupBy(o => o.Status).Select(g => new
             {
-                o.OrderId,
-                o.OrderDate,
-                o.TotalPrice,
-                o.Status,
-                o.PaymentMethod,
-                o.PaymentStatus,
-                o.TableId,
-                ItemCount = _context.OrderItems.Count(oi => oi.OrderId == o.OrderId)
-            }).OrderByDescending(o => o.OrderDate).ToListAsync();
+                Status = g.Key,
+                Count = g.Count()
+            }).ToDictionary(x => x.Status, x => x.Count);
+
+            return Ok(new OrderListDataViewModel
+            {
+                CountAll = _context.Orders.Count(),
+                CountCONFIRMED = counts.GetValueOrDefault(OrderStatus.CONFIRMED.ToString(), 0),
+                CountPENDING = counts.GetValueOrDefault(OrderStatus.PENDING.ToString(), 0),
+                CountCOMPLETED = counts.GetValueOrDefault(OrderStatus.COMPLETED.ToString(), 0),
+                CountPROCESSED = counts.GetValueOrDefault(OrderStatus.PROCESSED.ToString(), 0),
+                CountPROCESSING = counts.GetValueOrDefault(OrderStatus.PROCESSING.ToString(), 0),
+                CountCANCELLED = counts.GetValueOrDefault(OrderStatus.CANCELLED.ToString(), 0)
+            });
+        }
+
+        // GET: api/Orders
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders(string? key)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
+            }
+
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            if (userIdClaim == null || userTypeClaim == null)
+            {
+                return Unauthorized("Không thể xác định userId hoặc userType.");
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var userType = userTypeClaim.Value;
+
+            if (userType != "CoffeeShopManager" && userType != "Admin")
+            {
+                return Forbid("Bạn không có quyền truy cập danh sách đơn hàng.");
+            }
+
+            var coffeeShop = await _context.CoffeeShops.FirstOrDefaultAsync(c => c.UserId == userId);
+            if (coffeeShop == null)
+            {
+                return NotFound("Không tìm thấy thông tin cửa hàng liên kết với tài khoản này.");
+            }
+            var orders = await _context.Orders.Where(o => o.CoffeeShopId == coffeeShop.CoffeeShopId && (key == null || key == o.Status))
+                .GroupJoin(_context.OrderItems, o => o.OrderId, oi => oi.OrderId, (order, items) => new
+                {
+                    order.OrderId,
+                    order.OrderDate,
+                    order.TotalPrice,
+                    order.Status,
+                    order.PaymentMethod,
+                    order.PaymentStatus,
+                    order.TableId,
+                    ItemCount = items.Count()
+                })
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+
 
             var groupedOrders = orders
                 .GroupBy(o => o.OrderDate.Date)
@@ -98,9 +160,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                         Table = o.TableId.ToString(),
                         PaymentStatus = o.PaymentStatus,
                         PaymentMethod = o.PaymentMethod
-                    }).ToList()
-                })
-                .ToList();
+                    }).ToList()}).ToList();
 
             return Ok(groupedOrders);
         }
@@ -142,7 +202,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 TotalPrice = totalPrice,
                 OrderDate = DateTime.Now,
                 UpdateDate = DateTime.Now,
-                Status = "Ordered",
+                Status = OrderStatus.PENDING.ToString(),
                 PaymentMethod = request.paymentMethod,
                 PaymentStatus = request.paymentStatus,
                 DeviceId = request.deviceId
@@ -158,7 +218,9 @@ namespace OnlineQRMenuApp.Controllers.APIs
                     MenuItemId = item.ProductId,
                     Quantity = item.Quantity,
                     Note = item.Note,
-                    SizeOptions = item.SizeOptions
+                    SizeOptions = item.SizeOptions,
+                    Price = item.Price * item.Quantity,
+                    Cost = item.Cost * item.Quantity
                 };
                 _context.OrderItems.Add(orderItem);
                 await _context.SaveChangesAsync();
@@ -180,17 +242,19 @@ namespace OnlineQRMenuApp.Controllers.APIs
                     status = order.Status,
                     updateDate = order.UpdateDate,
                     paymentMethod = order.PaymentMethod,
-                    orderDate = order.OrderDate
+                    orderDate = order.OrderDate,
+                    paymentStatus = order.PaymentStatus,
                 });
             }
 
             var response = new
             {
                 OrderId = order.OrderId,
-                Status = "Ordered",
+                Status = order.Status,
                 UpdateDate = order.UpdateDate,
                 PaymentMethod = order.PaymentMethod,
-                OrderDate = order.OrderDate
+                OrderDate = order.OrderDate,
+                PaymentStatus = order.PaymentStatus,
             };
 
             return Ok(response);
@@ -224,7 +288,8 @@ namespace OnlineQRMenuApp.Controllers.APIs
                     status = order.Status,
                     updateDate = order.UpdateDate,
                     paymentMethod = order.PaymentMethod,
-                    orderDate = order.OrderDate
+                    orderDate = order.OrderDate,
+                    paymentStatus = order.PaymentStatus,
                 });
             }
 
