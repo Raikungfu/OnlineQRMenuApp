@@ -5,6 +5,7 @@ using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Models.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace OnlineQRMenuApp.Controllers.APIs
@@ -69,6 +70,54 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
             return Ok(menuItems);
         }
+
+        [HttpGet("product-coffeeshop")]
+        public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuItem([FromQuery] int? categoryId)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
+            }
+
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            if (userIdClaim == null || userTypeClaim == null)
+            {
+                return Unauthorized("Không thể xác định userId hoặc userType.");
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var userType = userTypeClaim.Value;
+
+            if (userType != "CoffeeShopManager" && userType != "Admin")
+            {
+                return Forbid("Bạn không có quyền truy cập danh sách đơn hàng.");
+            }
+
+            var coffeeShop = await _context.CoffeeShops.FirstOrDefaultAsync(c => c.UserId == userId);
+
+            var query = _context.Categories
+                .Include(c => c.MenuItems)
+                .Where(c => c.CoffeeShopId == coffeeShop.CoffeeShopId);
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                query = query.Where(c => c.CategoryId == categoryId);
+            }
+
+            var categories = await query.ToListAsync();
+
+            var menuItems = categories.SelectMany(c => c.MenuItems).ToList();
+
+            if (menuItems == null || !menuItems.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(menuItems);
+        }
+
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenuSearch([FromQuery] int shopId, [FromQuery] string? searchQuery, [FromQuery] int? categoryId)
         {

@@ -20,6 +20,9 @@ namespace OnlineQRMenuApp.Models
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
         public decimal Price { get; set; } = 0.0m;
 
+        [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
+        public decimal Cost { get; set; } = 0.0m;
+
         public string Type { get; set; }
 
         [Required]

@@ -21,6 +21,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
         public int tableId { get; set; }
         public List<OrderDto> items { get; set; }
         public string paymentMethod { get; set; }
+        public string paymentStatus { get; set; }
         public string? deviceId { get; set; }
     }
 
@@ -77,6 +78,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 o.TotalPrice,
                 o.Status,
                 o.PaymentMethod,
+                o.PaymentStatus,
                 o.TableId,
                 ItemCount = _context.OrderItems.Count(oi => oi.OrderId == o.OrderId)
             }).OrderByDescending(o => o.OrderDate).ToListAsync();
@@ -94,7 +96,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                         Price = o.TotalPrice.ToString("0.00"),
                         Quantity = o.ItemCount.ToString(),
                         Table = o.TableId.ToString(),
-                        PaymentStatus = "Paid",
+                        PaymentStatus = o.PaymentStatus,
                         PaymentMethod = o.PaymentMethod
                     }).ToList()
                 })
@@ -116,7 +118,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 Name = ot.MenuItem.Name,
                 Image = ot.MenuItem.Image,
                 Description = ot.MenuItem.Description,
-                ItemPrice = ot.MenuItem.Price,
+                ItemPrice = ot.Price,
                 Type = ot.MenuItem.Type
             }).ToListAsync();
 
@@ -142,6 +144,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 UpdateDate = DateTime.Now,
                 Status = "Ordered",
                 PaymentMethod = request.paymentMethod,
+                PaymentStatus = request.paymentStatus,
                 DeviceId = request.deviceId
             };
             _context.Orders.Add(order);

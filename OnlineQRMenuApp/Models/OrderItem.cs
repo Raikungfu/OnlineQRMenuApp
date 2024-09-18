@@ -18,6 +18,12 @@ namespace OnlineQRMenuApp.Models
 
         public int Quantity { get; set; }
 
+        [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
+        public decimal Price { get; set; } = 0.0m;
+
+        [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive value")]
+        public decimal Cost { get; set; } = 0.0m;
+
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
         [ForeignKey("MenuItemId")]
