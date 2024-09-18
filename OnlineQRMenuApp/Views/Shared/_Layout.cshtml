@@ -88,10 +88,12 @@
                         <a href="/Admin/Login" class="main-navbar-link">Admin Login</a>
                         <a href="/Coffee-Shop/Login" class="main-navbar-link">Coffee Shop Login</a>
                     }
-
-                    <button id="toggle-menu-open" class="toggle-menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button id="toggle-menu-open" class="toggle-menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    }
                 </div>
             </div>
             <!-- Mobile Navigation Menu -->
@@ -129,9 +131,12 @@
 
         </nav>
     </header>
-    <div class="topbar">
-        @Html.Partial("_Nav")
-    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="topbar">
+            @Html.Partial("_Nav")
+        </div>
+    }
     <div class="main-content">
         @RenderBody()
     </div>
@@ -139,15 +144,6 @@
         &copy; FPT Combined Innovators Group - EXE101 - Summer 2024
     </footer>
     @RenderSection("Scripts", required: false)
-    <script>
-        document.getElementById('nav-toggle').addEventListener('click', function () {
-            document.getElementById('mobile-nav').classList.toggle('hidden');
-        });
-
-        document.getElementById('mobile-nav-close').addEventListener('click', function () {
-            document.getElementById('mobile-nav').classList.add('hidden');
-        });
-    </script>
     <script src="~/js/SignalR.js"></script>
     <script src="~/js/Dashboard.js"></script>
     <script src="~/js/site.js"></script>
