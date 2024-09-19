@@ -116,9 +116,11 @@ namespace OnlineQRMenuApp.Controllers
             var claims = new List<Claim>
     {
         new Claim(ClaimTypes.Name, userId),
+
         new Claim(ClaimTypes.NameIdentifier, userEmail),
         new Claim(ClaimTypes.Role, userRole)
     };
+
 
             var newToken = _tokenService.GenerateToken(new User
             {

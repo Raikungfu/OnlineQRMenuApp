@@ -89,7 +89,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
 
             return Ok(new OrderListDataViewModel
             {
-                CountAll = _context.Orders.Count(),
+                CountAll = _context.Orders.Where(o => o.CoffeeShopId == coffeeShop.CoffeeShopId).Count(),
                 CountCONFIRMED = counts.GetValueOrDefault(OrderStatus.CONFIRMED.ToString(), 0),
                 CountPENDING = counts.GetValueOrDefault(OrderStatus.PENDING.ToString(), 0),
                 CountCOMPLETED = counts.GetValueOrDefault(OrderStatus.COMPLETED.ToString(), 0),
