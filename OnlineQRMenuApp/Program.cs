@@ -68,12 +68,6 @@ builder.Services.AddAuthentication(options =>
 })
 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
 {
-    /*
-    options.LoginPath = "/Users/Login";
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SecurePolicy = environment == "Production" ? CookieSecurePolicy.Always : CookieSecurePolicy.None;
-    options.Cookie.SameSite = environment == "Production" ? SameSiteMode.Strict : SameSiteMode.Lax;
-    */
     options.LoginPath = "/Users/Login";
     options.Cookie.HttpOnly = true;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
