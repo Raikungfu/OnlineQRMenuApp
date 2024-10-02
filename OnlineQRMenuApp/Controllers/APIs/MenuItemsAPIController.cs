@@ -47,6 +47,20 @@ namespace OnlineQRMenuApp.Controllers.APIs
             return menuItemsModel;
         }
 
+        [HttpGet("customize-option")]
+        public async Task<ActionResult<List<CustomizationGroup>>> GetMenuItemCustomizeOption([FromQuery] int productId)
+        {
+            var menuItem = await _context.CustomizationGroups.Include(mC => mC.Customizations).Where(mC => mC.MenuItemId == productId).ToArrayAsync();
+
+            if (menuItem == null)
+            {
+                return NotFound();
+            }
+            var menuItemsModel = _mapper.Map<List<CustomizationGroup>>(menuItem);
+
+            return menuItemsModel;
+        }
+
         [HttpGet("product")]
         public async Task<ActionResult<IEnumerable<MenuItem>>> GetMenu([FromQuery] int shopId, [FromQuery] int? categoryId)
         {
