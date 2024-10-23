@@ -149,7 +149,7 @@ namespace OnlineQRMenuApp.Controllers
                 return null;
             }
 
-            var member = await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
+            var member = await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email && x.Password == password);
             if (member == null)
             {
                 return null;
