@@ -40,7 +40,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
             }
 
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
 
             if (userIdClaim == null || userTypeClaim == null)
