@@ -227,7 +227,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
             }
 
             List<string> userConnectionIds = _connectionService.GetConnectionIdsByRoleAndDeviceId("customer", request.deviceId);
-            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("coffeeshop", request.coffeeShopId);
+            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("CoffeeShopManager", request.coffeeShopId);
 
             var allConnections = new List<string>();
 

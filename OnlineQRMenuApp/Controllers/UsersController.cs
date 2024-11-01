@@ -69,8 +69,8 @@ namespace OnlineQRMenuApp.Controllers
 
             var claims = new List<Claim>
     {
-        new Claim(ClaimTypes.Name, member.UserId.ToString()),
-        new Claim(ClaimTypes.NameIdentifier, member.Email),
+        new Claim(ClaimTypes.Name, member.Email),
+        new Claim(ClaimTypes.NameIdentifier, member.UserId.ToString()),
         new Claim(ClaimTypes.Role, member.UserType),
     };
             var users = await _context.Users.ToListAsync();
@@ -104,8 +104,8 @@ namespace OnlineQRMenuApp.Controllers
                 return Unauthorized(new { message = "Token không hợp lệ hoặc đã hết hạn." });
             }
 
-            var userEmail = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userId = principal.FindFirst(ClaimTypes.Name)?.Value;
+            var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userEmail = principal.FindFirst(ClaimTypes.Name)?.Value;
             var userRole = principal.FindFirst(ClaimTypes.Role)?.Value;
 
             if (string.IsNullOrEmpty(userEmail) || string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(userRole))
@@ -115,9 +115,8 @@ namespace OnlineQRMenuApp.Controllers
 
             var claims = new List<Claim>
     {
-        new Claim(ClaimTypes.Name, userId),
-
-        new Claim(ClaimTypes.NameIdentifier, userEmail),
+        new Claim(ClaimTypes.Name, userEmail),
+        new Claim(ClaimTypes.NameIdentifier, userId),
         new Claim(ClaimTypes.Role, userRole)
     };
 

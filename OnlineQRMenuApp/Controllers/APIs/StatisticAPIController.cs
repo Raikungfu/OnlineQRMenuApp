@@ -35,6 +35,27 @@ namespace OnlineQRMenuApp.Controllers.APIs
         [HttpGet]
         public async Task<IActionResult> Statistic([FromQuery] DateTime? startDate, [FromQuery] DateTime? endDate, [FromQuery] StatisticType? statisticType = StatisticType.Daily)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
+            }
+
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+            if (userIdClaim == null || userTypeClaim == null)
+            {
+                return Unauthorized("Không thể xác định userId hoặc userType.");
+            }
+
+            var userId = int.Parse(userIdClaim.Value);
+            var userType = userTypeClaim.Value;
+
+            if (userType != "CoffeeShopManager")
+            {
+                return Forbid("Bạn không có quyền truy cập danh sách đơn hàng.");
+            }
+
             if (!startDate.HasValue || !endDate.HasValue)
             {
                 var today = DateTime.Today;
@@ -42,11 +63,11 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 endDate = startDate.Value.AddMonths(1).AddDays(-1);
             }
 
-            var metrics = await GetMetricsAsync(startDate, endDate, statisticType);
+            var metrics = await GetMetricsAsync(startDate, endDate, statisticType, userId);
             return Ok(metrics);
         }
 
-        public async Task<ChartData> GetMetricsAsync(DateTime? startDate, DateTime? endDate, StatisticType? statisticType)
+        public async Task<ChartData> GetMetricsAsync(DateTime? startDate, DateTime? endDate, StatisticType? statisticType, int userId)
         {
             IQueryable<dynamic> query = null;
 
@@ -58,7 +79,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                               oi => oi.OrderId,
                               o => o.OrderId,
                               (oi, o) => new { oi, o })
-                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate)
+                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate && x.o.CoffeeShopId == userId)
                         .GroupBy(x => x.o.OrderDate.Date)
                         .Select(g => new
                         {
@@ -76,7 +97,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                               oi => oi.OrderId,
                               o => o.OrderId,
                               (oi, o) => new { oi, o })
-                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate)
+                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate && x.o.CoffeeShopId == userId)
                         .GroupBy(x => new { Year = x.o.OrderDate.Year, Month = x.o.OrderDate.Month })
                         .Select(g => new
                         {
@@ -94,7 +115,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                               oi => oi.OrderId,
                               o => o.OrderId,
                               (oi, o) => new { oi, o })
-                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate)
+                        .Where(x => x.o.OrderDate >= startDate && x.o.OrderDate <= endDate && x.o.CoffeeShopId == userId)
                         .GroupBy(x => x.o.OrderDate.Year)
                         .Select(g => new
                         {
@@ -112,7 +133,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 throw new InvalidOperationException("Query không được khởi tạo.");
             }
 
-            var data = await query.ToListAsync();
+            var data = await query.AsNoTracking().ToListAsync();
 
             var totalRevenue = data.Sum(d => (decimal) d.Revenue);
             var totalProfit = data.Sum(d => (decimal) d.Profit);

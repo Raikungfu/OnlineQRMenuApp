@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using OnlineQRMenuApp.Models;
 using OnlineQRMenuApp.Models.ViewModel;
 using OnlineQRMenuApp.Service;
+using System.Security.Claims;
 using System.Threading.Tasks;
 namespace OnlineQRMenuApp.Hubs
 {
@@ -45,14 +46,18 @@ namespace OnlineQRMenuApp.Hubs
         public override async Task OnConnectedAsync()
         {
             var deviceId = Context.GetHttpContext().Request.Query["deviceId"].ToString();
-            var role = Context.GetHttpContext().Request.Query.ContainsKey("role") ? Context.GetHttpContext().Request.Query["role"].ToString() : string.Empty;
-            int id = int.TryParse(Context.GetHttpContext().Request.Query["id"], out var parsedId) ? parsedId : 0;
+
+            var userIdClaim = Context.User.FindFirst(ClaimTypes.NameIdentifier);
+            int userId = userIdClaim != null && int.TryParse(userIdClaim.Value, out var parsedId) ? parsedId : int.TryParse(Context.GetHttpContext().Request.Query["id"], out var parsedId2) ? parsedId2 : 0;
+
+            var roleClaim = Context.User.FindFirst(ClaimTypes.Role);
+            string role = roleClaim?.Value ?? Context.GetHttpContext().Request.Query["role"].ToString();
 
             var connectionInfo = new ConnectInfo
             {
                 DeviceId = deviceId,
                 Role = role,
-                Id = id
+                Id = userId
             };
 
             _connectionService.AddConnection(Context.ConnectionId, connectionInfo);

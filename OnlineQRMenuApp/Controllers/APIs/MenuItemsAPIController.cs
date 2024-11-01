@@ -35,7 +35,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
         public async Task<ActionResult<MenuItemsModel>> GetMenuItem([FromQuery] int shopId, [FromQuery] int productId)
         {
             var menuItem = await _context.MenuItems.Where(m => m.Category.CoffeeShopId == shopId)
-                .Include(m => m.CustomizationGroups).ThenInclude(mC => mC.Customizations)
+                .Include(m => m.CustomizationGroups).ThenInclude(mC => mC.Customizations).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.MenuItemId == productId);
 
             if (menuItem == null)
@@ -73,7 +73,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 query = query.Where(c => c.CategoryId == categoryId);
             }
 
-            var categories = await query.ToListAsync();
+            var categories = await query.AsNoTracking().ToListAsync();
 
             var menuItems = categories.SelectMany(c => c.MenuItems).ToList();
 
@@ -93,7 +93,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
             }
 
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
 
             if (userIdClaim == null || userTypeClaim == null)
@@ -120,7 +120,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 query = query.Where(c => c.CategoryId == categoryId);
             }
 
-            var categories = await query.ToListAsync();
+            var categories = await query.AsNoTracking().ToListAsync();
 
             var menuItems = categories.SelectMany(c => c.MenuItems).ToList();
 
@@ -150,7 +150,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 query = query.Where(mi => mi.Name.ToLower().Contains(normalizedSearchQuery));
             }
 
-            var menuItems = await query.ToListAsync();
+            var menuItems = await query.AsNoTracking().ToListAsync();
 
             if (menuItems == null || !menuItems.Any())
             {

@@ -23,9 +23,9 @@ namespace OnlineQRMenuApp.Service
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(ClaimTypes.Name, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Name, user.UserId.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Role, user.UserType),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddDays(1).ToUnixTimeSeconds().ToString())
