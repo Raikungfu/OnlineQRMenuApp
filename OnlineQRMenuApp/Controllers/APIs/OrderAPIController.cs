@@ -59,7 +59,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
             }
 
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
 
             if (userIdClaim == null || userTypeClaim == null)
@@ -108,7 +108,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
                 return Unauthorized("Bạn cần đăng nhập để xem danh sách đơn hàng.");
             }
 
-            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
             var userTypeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
 
             if (userIdClaim == null || userTypeClaim == null)
@@ -275,7 +275,7 @@ namespace OnlineQRMenuApp.Controllers.APIs
             await _context.SaveChangesAsync();
 
             List<string> userConnectionIds = _connectionService.GetConnectionIdsByRoleAndDeviceId("customer", order.DeviceId);
-            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("coffeeshop", order.CoffeeShopId);
+            List<string> coffeeshopConnectionIds = _connectionService.GetConnectionIdsByRoleAndId("CoffeeShopManager", order.CoffeeShopId);
 
             var allConnections = new List<string>();
             allConnections.AddRange(userConnectionIds);
